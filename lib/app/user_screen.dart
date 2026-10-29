@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:axcend/api/client.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 final _log = getLogger(UserScreen);
 

@@ -36,7 +36,12 @@ dev_dependencies:
   injectable_generator: ^3.0.2
   auto_route_generator: ^10.5.0
   localized_text_key_generator: ^0.5.0
+  import_sorter: ^4.6.0
 
 flutter:
   uses-material-design: true
   generate: true
+
+import_sorter:
+  comments: false
+

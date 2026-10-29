@@ -1,6 +1,6 @@
 import 'package:axcend/api/client.dart';
-import 'package:axcend/environment.dart';
 import 'package:axcend/app_router.dart';
+import 'package:axcend/environment.dart';
 import 'package:axcend/l10n/text.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';

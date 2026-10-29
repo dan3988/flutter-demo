@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:axcend/api/logging_interceptor.dart';
 import 'package:chopper/chopper.dart' hide Level, Post;
 import 'package:logging/logging.dart';
 
+import 'package:axcend/api/logging_interceptor.dart';
 import 'package:axcend/api/models.dart';
 
 export 'package:axcend/api/models.dart';

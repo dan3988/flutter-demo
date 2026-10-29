@@ -1,6 +1,7 @@
-import 'package:axcend/util.dart';
 import 'package:chopper/chopper.dart' hide Level;
 import 'package:http/http.dart' as http;
+
+import 'package:axcend/util.dart';
 
 class RequestLoggingInterceptor implements Interceptor {
   final Logger logger;
