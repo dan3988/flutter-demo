@@ -4,7 +4,6 @@ import 'package:axcend/app_router.dart';
 import 'package:axcend/l10n/text.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
-import 'package:provider/provider.dart';
 
 const filesDirName = 'app';
 

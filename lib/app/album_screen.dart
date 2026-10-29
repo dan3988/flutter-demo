@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:axcend/api/client.dart';
 import 'package:axcend/app/user_widget.dart';
 import 'package:axcend/ui.dart';

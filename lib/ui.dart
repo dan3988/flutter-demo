@@ -1,7 +1,7 @@
 export 'package:flutter/foundation.dart';
 export 'package:flutter/material.dart';
 
-export 'package:auto_route/annotations.dart';
+export 'package:auto_route/auto_route.dart';
 export 'package:provider/provider.dart';
 export 'package:localized_text_widget/localized_text_widget.dart';
 

@@ -1,7 +1,6 @@
 import 'package:axcend/api/client.dart';
 import 'package:axcend/ui.dart';
 import 'package:chopper/chopper.dart' show Response;
-import 'package:provider/provider.dart';
 
 typedef FutureListResponse<T> = Future<Response<List<T>>>;
 

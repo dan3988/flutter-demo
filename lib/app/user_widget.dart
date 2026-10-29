@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
-import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
 
 class UserWidget extends StatelessWidget {

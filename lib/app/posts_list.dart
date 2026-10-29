@@ -1,13 +1,10 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
 import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
-import 'package:provider/provider.dart';
 
 final _log = getLogger(PostsListWidget);
 

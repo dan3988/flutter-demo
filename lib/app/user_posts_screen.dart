@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:axcend/api/models.dart';
 import 'package:axcend/app/list_widget.dart';
 import 'package:axcend/app/posts_list.dart';

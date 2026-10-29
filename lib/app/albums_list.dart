@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
 import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/list_widget.dart';
