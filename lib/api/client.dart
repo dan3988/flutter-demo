@@ -1,17 +1,17 @@
 import 'dart:async';
 
+import 'package:axcend/api/logging_interceptor.dart';
 import 'package:chopper/chopper.dart' hide Level, Post;
-import 'package:http/http.dart' as http;
 import 'package:logging/logging.dart';
 
 import 'package:axcend/api/models.dart';
-import 'package:axcend/util/duration_extensions.dart';
-import 'package:axcend/util/file_size.dart';
 
 export 'package:axcend/api/models.dart';
 
 part 'client.chopper.dart';
+
 part 'client.endpoints.dart';
+
 part 'client.extensions.dart';
 
 typedef Result<T> = Future<Response<T>>;
@@ -30,6 +30,7 @@ class PlaceholderApi {
     required Uri baseUrl,
     Logger? logger,
     Level logLevel = .INFO,
+    bool simulateSlowConnection = false,
   }) {
     final client = ChopperClient(
       baseUrl: baseUrl,
@@ -43,7 +44,15 @@ class PlaceholderApi {
       ],
       interceptors: [
         if (logger != null)
-          _RequestLoggingInterceptor(logger, baseUrl.toString(), logLevel),
+          RequestLoggingInterceptor(
+            logger,
+            baseUrl: baseUrl.toString(),
+            level: logLevel,
+          ),
+        if (simulateSlowConnection)
+          _SlowConnectionSimulationInterceptor(
+            minimumDuration: .new(seconds: 2),
+          ),
       ],
     );
 
@@ -105,110 +114,23 @@ class _JsonConverter extends JsonConverter {
   }
 }
 
-class _RequestLoggingInterceptor implements Interceptor {
-  final Logger logger;
-  final String? baseUrl;
-  final Level level;
+class _SlowConnectionSimulationInterceptor implements Interceptor {
+  final Duration minimumDuration;
+  final double magnitude;
 
-  _RequestLoggingInterceptor(this.logger, this.baseUrl, this.level);
-
-  @override
-  Future<Response<BodyType>> intercept<BodyType>(Chain<BodyType> chain) async {
-    final request = chain.request;
-    logger.log(level, _RequestLogMessage(baseUrl, request));
-    final stopWatch = Stopwatch()..start();
-    final response = await chain.proceed(request);
-    stopWatch.stop();
-    logger.log(
-      level,
-      _ResponseLogMessage(baseUrl, response, stopWatch.elapsed),
-    );
-    return response;
-  }
-}
-
-final class _RequestLogMessage {
-  final String? baseUrl;
-  final Request request;
-
-  _RequestLogMessage(this.baseUrl, this.request);
+  _SlowConnectionSimulationInterceptor({
+    this.minimumDuration = .zero,
+    this.magnitude = 0,
+  });
 
   @override
-  toString() {
-    final buffer = StringBuffer('--> ')
-      ..write(request.method)
-      ..write(' ')
-      ..writeUrl(request, baseUrl)
-      ..write(' (');
-
-    final body = request.body;
-    if (body == null) {
-      buffer.write('empty');
-    } else if (request.multipart) {
-      buffer.write('multipart');
-    } else if (body is List<int>) {
-      buffer.writeSize(body.length);
-    } else if (body is String) {
-      buffer
-        ..write(body.length)
-        ..write(' characters');
-    } else {
-      buffer.write(body.runtimeType);
-    }
-
-    return (buffer..write(')')).toString();
-  }
-}
-
-final class _ResponseLogMessage {
-  final String? baseUrl;
-  final Response response;
-  final Duration duration;
-
-  _ResponseLogMessage(this.baseUrl, this.response, this.duration);
-
-  @override
-  toString() {
-    final buffer = StringBuffer('<-- ');
-    final base = response.base;
-    final request = base.request;
-    if (request != null) {
-      buffer
-        ..write(request.method)
-        ..write(' ')
-        ..writeUrl(request, baseUrl)
-        ..write(' ');
-    }
-
-    buffer
-      ..write(response.statusCode)
-      ..write(' ')
-      ..write('(')
-      ..write(duration.toDebugString());
-
-    final size = base.contentLength;
-    if (size != null) {
-      buffer
-        ..write(', ')
-        ..writeSize(size);
-    }
-
-    return (buffer..write(')')).toString();
-  }
-}
-
-extension on StringBuffer {
-  void writeSize(int size, {int decimals = 1}) {
-    final text = FileSize.bytes(size).toString(decimals: decimals);
-    write(text);
-  }
-
-  void writeUrl(http.BaseRequest request, String? baseUrl) {
-    var url = request.url.toString();
-    if (baseUrl != null && url.startsWith(baseUrl)) {
-      url = url.substring(baseUrl.length);
-    }
-
-    write(url);
+  FutureOr<Response<BodyType>> intercept<BodyType>(
+    Chain<BodyType> chain,
+  ) async {
+    final start = DateTime.timestamp();
+    final result = await chain.proceed(chain.request);
+    final duration = DateTime.timestamp().difference(start);
+    await Future.delayed(minimumDuration + (duration * magnitude));
+    return result;
   }
 }

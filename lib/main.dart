@@ -1,8 +1,8 @@
 import 'package:axcend/api/client.dart';
-import 'package:axcend/app_config.dart';
+import 'package:axcend/environment.dart';
 import 'package:axcend/app_router.dart';
+import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 const filesDirName = 'app';
@@ -11,9 +11,11 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   Logger.root.onRecord.listen((record) => debugPrint(record.toConsoleString()));
+
   final api = PlaceholderApi(
-    baseUrl: Uri.parse(AppConfig.apiUrl),
+    baseUrl: Uri.parse(Environment.apiUrl),
     logger: getLogger(PlaceholderApi),
+    simulateSlowConnection: kDebugMode,
   );
 
   runApp(
@@ -49,6 +51,9 @@ class MyApp extends StatelessWidget {
       themeMode: .system,
       darkTheme: _theme(context, .dark),
       routerConfig: router.config(),
+      builder: (context, child) {
+        return Loader(child: child!);
+      },
     );
   }
 }

@@ -39,13 +39,14 @@ abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
 
         final posts = state.data;
         if (posts == null) {
-          return const SizedBox.shrink();
+          return Center(child: SizedBox(child: CircularProgressIndicator()));
         }
 
         final divider = Divider(
           height: 1,
           color: Theme.of(context).colorScheme.outline,
         );
+
         return ListView.separated(
           separatorBuilder: (context, _) => divider,
           itemCount: posts.length,

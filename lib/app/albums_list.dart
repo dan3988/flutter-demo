@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
 import 'package:axcend/app/list_widget.dart';
@@ -36,36 +38,40 @@ class _AlbumsListWidgetState extends ListWidgetState<AlbumsListWidget, Album>
     );
   }
 
-  Future<void> _openAlbum(Album album) async {
-    final List<Photo> photos;
-    final User user;
+  void _openAlbum(Album album) {
+    Loader.doWork(context, () async {
+      final List<Photo> photos;
+      final User user;
 
-    final api = Provider.of<PlaceholderApi>(context, listen: false);
-    final getPhotos = api.albums.getPhotos(album.id);
-    final getUser = api.users.get(album.userId);
+      final api = Provider.of<PlaceholderApi>(context, listen: false);
+      final getPhotos = api.albums.getPhotos(album.id);
+      final getUser = api.users.get(album.userId);
 
-    try {
-      photos = await getPhotos.bodyOrThrow();
-    } on Exception catch (error, stackTrace) {
-      logger.severe(
-        'Failed to get photos for album ${album.id}',
-        error,
-        stackTrace,
+      try {
+        photos = await getPhotos.bodyOrThrow();
+      } on Exception catch (error, stackTrace) {
+        logger.severe(
+          'Failed to get photos for album ${album.id}',
+          error,
+          stackTrace,
+        );
+        return;
+      }
+
+      try {
+        user = await getUser.bodyOrThrow();
+      } on Exception catch (error, stackTrace) {
+        logger.severe('Failed to get user ${album.userId}', error, stackTrace);
+        return;
+      }
+
+      if (!mounted) {
+        return;
+      }
+
+      unawaited(
+        context.pushRoute(AlbumRoute(album: album, photos: photos, user: user)),
       );
-      return;
-    }
-
-    try {
-      user = await getUser.bodyOrThrow();
-    } on Exception catch (error, stackTrace) {
-      logger.severe('Failed to get user ${album.userId}', error, stackTrace);
-      return;
-    }
-
-    if (!mounted) {
-      return;
-    }
-
-    context.pushRoute(AlbumRoute(album: album, photos: photos, user: user));
+    });
   }
 }
