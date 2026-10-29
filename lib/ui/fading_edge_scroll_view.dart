@@ -1,7 +1,47 @@
 import 'package:axcend/ui.dart';
 
-/// Adds a gradient at the start/end of a [SingleChildScrollView] to stop widgets from being cut-off
-class FadingScrollOverlay extends StatefulWidget {
+/// A scrollable widget that applies dynamic fading gradient edges at the start and end
+/// of its viewport.
+///
+/// As the user scrolls, the fading gradients automatically adjust based on the current
+/// scroll offset:
+/// * When scrolled to the very top or left, the start fading gradient disappears.
+/// * When scrolled to the very bottom or right, the end fading gradient disappears.
+/// * As content extends beyond the view edges, fading gradients dynamically appear to
+///   indicate additional scrollable content and prevent visual harsh cut-offs.
+///
+/// ### Usage Examples
+///
+/// Wrapping a single child widget:
+/// ```dart
+/// FadingEdgeScrollView(
+///   child: Column(
+///     children: [ ... ],
+///   ),
+/// )
+/// ```
+///
+/// Using convenience constructors for a [Row] or [Column]:
+/// ```dart
+/// FadingEdgeScrollView.column(
+///   spacing: 8.0,
+///   children: [ ... ],
+/// )
+/// ```
+///
+/// Custom scrollable builder (e.g. for [GridView] or [ListView]):
+/// ```dart
+/// FadingEdgeScrollView.builder(
+///   builder: (context, controller) {
+///     return ListView.builder(
+///       controller: controller,
+///       itemCount: 100,
+///       itemBuilder: (context, index) => ListTile(title: Text('Item $index')),
+///     );
+///   },
+/// )
+/// ```
+class FadingEdgeScrollView extends StatefulWidget {
   final Widget? child;
   final Axis scrollDirection;
   final ScrollableWidgetBuilder? builder;
@@ -14,7 +54,8 @@ class FadingScrollOverlay extends StatefulWidget {
   final double gradientFraction;
   final EdgeInsets gradientInset;
 
-  const FadingScrollOverlay({
+  /// Creates a [FadingEdgeScrollView] wrapping a single [child] in a [SingleChildScrollView].
+  const FadingEdgeScrollView({
     super.key,
     required Widget this.child,
     this.gradientColor,
@@ -28,7 +69,8 @@ class FadingScrollOverlay extends StatefulWidget {
   }) : builder = null,
        gradientInset = padding;
 
-  FadingScrollOverlay.row({
+  /// Creates a horizontal [FadingEdgeScrollView] wrapping [children] inside a [Row].
+  FadingEdgeScrollView.row({
     super.key,
     required List<Widget> children,
     this.gradientColor,
@@ -50,7 +92,8 @@ class FadingScrollOverlay extends StatefulWidget {
          children: children,
        );
 
-  FadingScrollOverlay.column({
+  /// Creates a vertical [FadingEdgeScrollView] wrapping [children] inside a [Column].
+  FadingEdgeScrollView.column({
     super.key,
     required List<Widget> children,
     this.gradientColor,
@@ -72,7 +115,11 @@ class FadingScrollOverlay extends StatefulWidget {
          children: children,
        );
 
-  const FadingScrollOverlay.builder({
+  /// Creates a [FadingEdgeScrollView] using a custom scrollable [builder] function.
+  ///
+  /// The [builder] receives a [ScrollController] that must be attached to the inner
+  /// scrollable widget (such as [ListView.builder] or [GridView.builder]).
+  const FadingEdgeScrollView.builder({
     super.key,
     required ScrollableWidgetBuilder this.builder,
     this.padding = .zero,
@@ -87,10 +134,10 @@ class FadingScrollOverlay extends StatefulWidget {
   }) : child = null;
 
   @override
-  State<FadingScrollOverlay> createState() => _FadingScrollOverlayState();
+  State<FadingEdgeScrollView> createState() => _FadingEdgeScrollViewState();
 }
 
-class _FadingScrollOverlayState extends State<FadingScrollOverlay> {
+class _FadingEdgeScrollViewState extends State<FadingEdgeScrollView> {
   late ScrollController _controller;
   var _ownsController = false;
   var _ratioStart = 0.0;
@@ -171,7 +218,7 @@ class _FadingScrollOverlayState extends State<FadingScrollOverlay> {
   }
 
   @override
-  void didUpdateWidget(covariant FadingScrollOverlay oldWidget) {
+  void didUpdateWidget(covariant FadingEdgeScrollView oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.controller != widget.controller) {

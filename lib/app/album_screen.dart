@@ -26,7 +26,7 @@ class AlbumScreen extends StatelessWidget {
           Expanded(
             child: ClipPath(
               clipBehavior: .antiAlias,
-              child: FadingScrollOverlay.builder(
+              child: FadingEdgeScrollView.builder(
                 margin: AppStyle.paddingMedAll,
                 builder: (context, controller) {
                   return GridView(
