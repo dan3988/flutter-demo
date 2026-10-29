@@ -8,4 +8,6 @@ abstract class AppStyle {
 
   static const Radius borderRadiusMed = .circular(10);
   static const BorderRadius borderRadiusMedAll = .all(borderRadiusMed);
+  static const BorderRadius borderRadiusMedTop = .vertical(top: borderRadiusMed);
+  static const BorderRadius borderRadiusMedBottom = .vertical(bottom: borderRadiusMed);
 }

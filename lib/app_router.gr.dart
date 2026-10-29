@@ -10,25 +10,28 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:axcend/api/client.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i8;
+import 'package:axcend/api/client.dart' as _i10;
+import 'package:axcend/api/models.dart' as _i12;
 import 'package:axcend/app/album_screen.dart' as _i1;
 import 'package:axcend/app/home_screen.dart' as _i2;
 import 'package:axcend/app/post_screen.dart' as _i3;
-import 'package:axcend/app/user_screen.dart' as _i4;
-import 'package:axcend/app/users_list.dart' as _i5;
-import 'package:axcend/ui.dart' as _i7;
-import 'package:collection/collection.dart' as _i9;
+import 'package:axcend/app/user_albums_screen.dart' as _i4;
+import 'package:axcend/app/user_posts_screen.dart' as _i5;
+import 'package:axcend/app/user_screen.dart' as _i6;
+import 'package:axcend/app/user_todos_screen.dart' as _i7;
+import 'package:axcend/ui.dart' as _i9;
+import 'package:collection/collection.dart' as _i11;
 
 /// generated route for
 /// [_i1.AlbumScreen]
-class AlbumRoute extends _i6.PageRouteInfo<AlbumRouteArgs> {
+class AlbumRoute extends _i8.PageRouteInfo<AlbumRouteArgs> {
   AlbumRoute({
-    _i7.Key? key,
-    required _i8.Album album,
-    required List<_i8.Photo> photos,
-    required _i8.User user,
-    List<_i6.PageRouteInfo>? children,
+    _i9.Key? key,
+    required _i10.Album album,
+    required List<_i10.Photo> photos,
+    required _i10.User user,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
          AlbumRoute.name,
          args: AlbumRouteArgs(
@@ -42,7 +45,7 @@ class AlbumRoute extends _i6.PageRouteInfo<AlbumRouteArgs> {
 
   static const String name = 'AlbumRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AlbumRouteArgs>();
@@ -64,13 +67,13 @@ class AlbumRouteArgs {
     required this.user,
   });
 
-  final _i7.Key? key;
+  final _i9.Key? key;
 
-  final _i8.Album album;
+  final _i10.Album album;
 
-  final List<_i8.Photo> photos;
+  final List<_i10.Photo> photos;
 
-  final _i8.User user;
+  final _i10.User user;
 
   @override
   String toString() {
@@ -83,7 +86,7 @@ class AlbumRouteArgs {
     if (other is! AlbumRouteArgs) return false;
     return key == other.key &&
         album == other.album &&
-        const _i9.ListEquality<_i8.Photo>().equals(photos, other.photos) &&
+        const _i11.ListEquality<_i10.Photo>().equals(photos, other.photos) &&
         user == other.user;
   }
 
@@ -91,19 +94,19 @@ class AlbumRouteArgs {
   int get hashCode =>
       key.hashCode ^
       album.hashCode ^
-      const _i9.ListEquality<_i8.Photo>().hash(photos) ^
+      const _i11.ListEquality<_i10.Photo>().hash(photos) ^
       user.hashCode;
 }
 
 /// generated route for
 /// [_i2.HomeScreen]
-class HomeRoute extends _i6.PageRouteInfo<void> {
-  const HomeRoute({List<_i6.PageRouteInfo>? children})
+class HomeRoute extends _i8.PageRouteInfo<void> {
+  const HomeRoute({List<_i8.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       return const _i2.HomeScreen();
@@ -113,13 +116,13 @@ class HomeRoute extends _i6.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.PostScreen]
-class PostRoute extends _i6.PageRouteInfo<PostRouteArgs> {
+class PostRoute extends _i8.PageRouteInfo<PostRouteArgs> {
   PostRoute({
-    _i7.Key? key,
-    required _i8.Post post,
-    required _i8.User user,
-    required List<_i8.Comment> comments,
-    List<_i6.PageRouteInfo>? children,
+    _i9.Key? key,
+    required _i10.Post post,
+    required _i10.User user,
+    required List<_i10.Comment> comments,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
          PostRoute.name,
          args: PostRouteArgs(
@@ -133,7 +136,7 @@ class PostRoute extends _i6.PageRouteInfo<PostRouteArgs> {
 
   static const String name = 'PostRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<PostRouteArgs>();
@@ -155,13 +158,13 @@ class PostRouteArgs {
     required this.comments,
   });
 
-  final _i7.Key? key;
+  final _i9.Key? key;
 
-  final _i8.Post post;
+  final _i10.Post post;
 
-  final _i8.User user;
+  final _i10.User user;
 
-  final List<_i8.Comment> comments;
+  final List<_i10.Comment> comments;
 
   @override
   String toString() {
@@ -175,7 +178,10 @@ class PostRouteArgs {
     return key == other.key &&
         post == other.post &&
         user == other.user &&
-        const _i9.ListEquality<_i8.Comment>().equals(comments, other.comments);
+        const _i11.ListEquality<_i10.Comment>().equals(
+          comments,
+          other.comments,
+        );
   }
 
   @override
@@ -183,16 +189,138 @@ class PostRouteArgs {
       key.hashCode ^
       post.hashCode ^
       user.hashCode ^
-      const _i9.ListEquality<_i8.Comment>().hash(comments);
+      const _i11.ListEquality<_i10.Comment>().hash(comments);
 }
 
 /// generated route for
-/// [_i4.UserScreen]
-class UserRoute extends _i6.PageRouteInfo<UserRouteArgs> {
+/// [_i4.UserAlbumsScreen]
+class UserAlbumsRoute extends _i8.PageRouteInfo<UserAlbumsRouteArgs> {
+  UserAlbumsRoute({
+    _i9.Key? key,
+    required _i12.User user,
+    required List<_i12.Album> albums,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+         UserAlbumsRoute.name,
+         args: UserAlbumsRouteArgs(key: key, user: user, albums: albums),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserAlbumsRoute';
+
+  static _i8.PageInfo page = _i8.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserAlbumsRouteArgs>();
+      return _i4.UserAlbumsScreen(
+        key: args.key,
+        user: args.user,
+        albums: args.albums,
+      );
+    },
+  );
+}
+
+class UserAlbumsRouteArgs {
+  const UserAlbumsRouteArgs({
+    this.key,
+    required this.user,
+    required this.albums,
+  });
+
+  final _i9.Key? key;
+
+  final _i12.User user;
+
+  final List<_i12.Album> albums;
+
+  @override
+  String toString() {
+    return 'UserAlbumsRouteArgs{key: $key, user: $user, albums: $albums}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserAlbumsRouteArgs) return false;
+    return key == other.key &&
+        user == other.user &&
+        const _i11.ListEquality<_i12.Album>().equals(albums, other.albums);
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      user.hashCode ^
+      const _i11.ListEquality<_i12.Album>().hash(albums);
+}
+
+/// generated route for
+/// [_i5.UserPostsScreen]
+class UserPostsRoute extends _i8.PageRouteInfo<UserPostsRouteArgs> {
+  UserPostsRoute({
+    _i9.Key? key,
+    required _i12.User user,
+    required List<_i12.Post> posts,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+         UserPostsRoute.name,
+         args: UserPostsRouteArgs(key: key, user: user, posts: posts),
+         initialChildren: children,
+       );
+
+  static const String name = 'UserPostsRoute';
+
+  static _i8.PageInfo page = _i8.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<UserPostsRouteArgs>();
+      return _i5.UserPostsScreen(
+        key: args.key,
+        user: args.user,
+        posts: args.posts,
+      );
+    },
+  );
+}
+
+class UserPostsRouteArgs {
+  const UserPostsRouteArgs({this.key, required this.user, required this.posts});
+
+  final _i9.Key? key;
+
+  final _i12.User user;
+
+  final List<_i12.Post> posts;
+
+  @override
+  String toString() {
+    return 'UserPostsRouteArgs{key: $key, user: $user, posts: $posts}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserPostsRouteArgs) return false;
+    return key == other.key &&
+        user == other.user &&
+        const _i11.ListEquality<_i12.Post>().equals(posts, other.posts);
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      user.hashCode ^
+      const _i11.ListEquality<_i12.Post>().hash(posts);
+}
+
+/// generated route for
+/// [_i6.UserScreen]
+class UserRoute extends _i8.PageRouteInfo<UserRouteArgs> {
   UserRoute({
-    _i7.Key? key,
-    required _i8.User user,
-    List<_i6.PageRouteInfo>? children,
+    _i9.Key? key,
+    required _i10.User user,
+    List<_i8.PageRouteInfo>? children,
   }) : super(
          UserRoute.name,
          args: UserRouteArgs(key: key, user: user),
@@ -201,11 +329,11 @@ class UserRoute extends _i6.PageRouteInfo<UserRouteArgs> {
 
   static const String name = 'UserRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<UserRouteArgs>();
-      return _i4.UserScreen(key: args.key, user: args.user);
+      return _i6.UserScreen(key: args.key, user: args.user);
     },
   );
 }
@@ -213,9 +341,9 @@ class UserRoute extends _i6.PageRouteInfo<UserRouteArgs> {
 class UserRouteArgs {
   const UserRouteArgs({this.key, required this.user});
 
-  final _i7.Key? key;
+  final _i9.Key? key;
 
-  final _i8.User user;
+  final _i10.User user;
 
   @override
   String toString() {
@@ -234,17 +362,60 @@ class UserRouteArgs {
 }
 
 /// generated route for
-/// [_i5.UsersListWidget]
-class UsersListWidget extends _i6.PageRouteInfo<void> {
-  const UsersListWidget({List<_i6.PageRouteInfo>? children})
-    : super(UsersListWidget.name, initialChildren: children);
+/// [_i7.UserTodosScreen]
+class UserTodosRoute extends _i8.PageRouteInfo<UserTodosRouteArgs> {
+  UserTodosRoute({
+    _i9.Key? key,
+    required _i12.User user,
+    required List<_i12.Todo> todos,
+    List<_i8.PageRouteInfo>? children,
+  }) : super(
+         UserTodosRoute.name,
+         args: UserTodosRouteArgs(key: key, user: user, todos: todos),
+         initialChildren: children,
+       );
 
-  static const String name = 'UsersListWidget';
+  static const String name = 'UserTodosRoute';
 
-  static _i6.PageInfo page = _i6.PageInfo(
+  static _i8.PageInfo page = _i8.PageInfo(
     name,
     builder: (data) {
-      return const _i5.UsersListWidget();
+      final args = data.argsAs<UserTodosRouteArgs>();
+      return _i7.UserTodosScreen(
+        key: args.key,
+        user: args.user,
+        todos: args.todos,
+      );
     },
   );
+}
+
+class UserTodosRouteArgs {
+  const UserTodosRouteArgs({this.key, required this.user, required this.todos});
+
+  final _i9.Key? key;
+
+  final _i12.User user;
+
+  final List<_i12.Todo> todos;
+
+  @override
+  String toString() {
+    return 'UserTodosRouteArgs{key: $key, user: $user, todos: $todos}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! UserTodosRouteArgs) return false;
+    return key == other.key &&
+        user == other.user &&
+        const _i11.ListEquality<_i12.Todo>().equals(todos, other.todos);
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      user.hashCode ^
+      const _i11.ListEquality<_i12.Todo>().hash(todos);
 }

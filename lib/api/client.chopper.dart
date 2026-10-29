@@ -250,18 +250,18 @@ final class _$UserService extends UserService {
   }
 
   @override
-  Future<Response<List<Comment>>> _getComments(
+  Future<Response<List<Album>>> _getAlbums(
     int userId,
     Future<void>? abortTrigger,
   ) {
-    final Uri $url = Uri.parse('/users/${userId}/comments');
+    final Uri $url = Uri.parse('/users/${userId}/albums');
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
       abortTrigger: abortTrigger,
     );
-    return client.send<List<Comment>, Comment>($request);
+    return client.send<List<Album>, Album>($request);
   }
 
   @override

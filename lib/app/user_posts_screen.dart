@@ -1,0 +1,31 @@
+import 'package:auto_route/annotations.dart';
+import 'package:axcend/api/models.dart';
+import 'package:axcend/app/list_widget.dart';
+import 'package:axcend/app/posts_list.dart';
+import 'package:axcend/ui.dart';
+
+@RoutePage()
+class UserPostsScreen extends StatefulWidget {
+  final User user;
+  final List<Post> posts;
+
+  const UserPostsScreen({super.key, required this.user, required this.posts});
+
+  @override
+  State<UserPostsScreen> createState() => _UserPostsScreenState();
+}
+
+class _UserPostsScreenState extends State<UserPostsScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Screen(
+      title: Localized(
+        text: AppText.pageTitleUserPosts(name: widget.user.username),
+      ),
+      body: ListWidget(
+        items: widget.posts,
+        itemBuilder: (_, post) => PostTile(post: post),
+      ),
+    );
+  }
+}

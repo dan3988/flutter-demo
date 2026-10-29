@@ -6,6 +6,22 @@ import 'package:axcend/util.dart';
 
 final _log = getLogger(TodosListWidget);
 
+class TodoTile extends StatelessWidget {
+  final Todo todo;
+
+  const TodoTile({super.key, required this.todo});
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemTile(
+      leading: todo.completed
+          ? Icon(Icons.check_circle, color: Colors.green)
+          : Icon(Icons.cancel, color: Colors.red),
+      title: Text(todo.title),
+    );
+  }
+}
+
 class TodosListWidget extends StatefulWidget {
   const TodosListWidget({super.key});
 
@@ -26,15 +42,6 @@ class _TodosListWidgetState extends ListWidgetState<TodosListWidget, Todo> {
 
   @override
   Widget buildItem(BuildContext context, Todo item) {
-    final theme = Theme.of(context);
-    return ItemTile(
-      leading: item.completed
-          ? Icon(Icons.check_circle, color: Colors.green)
-          : Icon(Icons.cancel, color: Colors.red),
-      title: Text(
-        item.title,
-        style: theme.textTheme.titleLarge?.copyWith(overflow: .ellipsis),
-      ),
-    );
+    return TodoTile(todo: item);
   }
 }

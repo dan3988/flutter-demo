@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
+import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/user_widget.dart';
 import 'package:axcend/ui.dart';
 
@@ -35,24 +36,16 @@ class _PostScreenState extends State<PostScreen> with DisposedSignalState {
         crossAxisAlignment: .stretch,
         spacing: AppStyle.paddingMed,
         children: [
-          Container(
-            decoration: BoxDecoration(
-              color: theme.colorScheme.primaryContainer,
-              borderRadius: .circular(10),
+          Text(
+            post.title,
+            style: theme.textTheme.titleLarge?.copyWith(
+              color: theme.colorScheme.onPrimaryContainer,
             ),
-            child: ListTile(
-              title: Text(
-                post.title,
-                style: theme.textTheme.titleLarge?.copyWith(
-                  color: theme.colorScheme.onPrimaryContainer,
-                ),
-              ),
-              subtitle: Text(
-                post.body,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: theme.colorScheme.onPrimaryContainer,
-                ),
-              ),
+          ),
+          Text(
+            post.body,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onPrimaryContainer,
             ),
           ),
           UserWidget(user: user),
@@ -61,44 +54,22 @@ class _PostScreenState extends State<PostScreen> with DisposedSignalState {
             style: theme.textTheme.titleMedium,
           ),
           Expanded(
-            child: ListView.separated(
-              itemCount: comments.length,
-              separatorBuilder: (_, _) => _commentsSeparator,
-              itemBuilder: (context, index) => _CommentWidget(comments[index]),
+            child: FadingEdgeScrollView.builder(
+              padding: AppStyle.paddingMedV,
+              builder: (context, controller) {
+                return ListView.separated(
+                  controller: controller,
+                  itemCount: comments.length,
+                  separatorBuilder: (_, _) => _commentsSeparator,
+                  itemBuilder: (context, index) {
+                    final comment = comments[index];
+                    return ItemTile(title: Text(comment.name), subtitle: Text(comment.body));
+                  },
+                );
+              }
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _CommentWidget extends StatelessWidget {
-  final Comment comment;
-
-  const _CommentWidget(this.comment);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.secondaryContainer,
-        borderRadius: .circular(10),
-      ),
-      child: ListTile(
-        title: Text(
-          comment.name,
-          style: theme.textTheme.titleMedium?.copyWith(
-            color: theme.colorScheme.onPrimaryContainer,
-          ),
-        ),
-        subtitle: Text(
-          comment.body,
-          style: theme.textTheme.bodySmall?.copyWith(
-            color: theme.colorScheme.onPrimaryContainer,
-          ),
-        ),
       ),
     );
   }

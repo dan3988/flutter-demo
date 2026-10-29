@@ -4,9 +4,58 @@ import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
 import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
-import 'package:provider/provider.dart';
+import 'package:axcend/util/logging.dart';
+
+final _log = getLogger(AlbumTile);
+
+class AlbumTile extends StatelessWidget {
+  final Album album;
+
+  const AlbumTile({super.key, required this.album});
+
+  @override
+  Widget build(BuildContext context) {
+    return ItemTile(title: Text(album.title), onTap: () => _openAlbum(context));
+  }
+
+  void _openAlbum(BuildContext context) {
+    Loader.doWork(context, () async {
+      final List<Photo> photos;
+      final User user;
+
+      final api = Provider.of<PlaceholderApi>(context, listen: false);
+      final getPhotos = api.albums.getPhotos(album.id);
+      final getUser = api.users.get(album.userId);
+
+      try {
+        photos = await getPhotos.bodyOrThrow();
+      } on Exception catch (error, stackTrace) {
+        _log.severe(
+          'Failed to get photos for album ${album.id}',
+          error,
+          stackTrace,
+        );
+        return;
+      }
+
+      try {
+        user = await getUser.bodyOrThrow();
+      } on Exception catch (error, stackTrace) {
+        _log.severe('Failed to get user ${album.userId}', error, stackTrace);
+        return;
+      }
+
+      if (!context.mounted) {
+        return;
+      }
+
+      unawaited(
+        context.pushRoute(AlbumRoute(album: album, photos: photos, user: user)),
+      );
+    });
+  }
+}
 
 class AlbumsListWidget extends StatefulWidget {
   const AlbumsListWidget({super.key});
@@ -29,50 +78,6 @@ class _AlbumsListWidgetState extends ListWidgetState<AlbumsListWidget, Album>
 
   @override
   Widget buildItem(BuildContext context, Album item) {
-    final theme = Theme.of(context);
-    return ItemTile(
-      title: Text(
-        item.title,
-        style: theme.textTheme.titleLarge?.copyWith(overflow: .ellipsis),
-      ),
-      onTap: () => _openAlbum(item),
-    );
-  }
-
-  void _openAlbum(Album album) {
-    Loader.doWork(context, () async {
-      final List<Photo> photos;
-      final User user;
-
-      final api = Provider.of<PlaceholderApi>(context, listen: false);
-      final getPhotos = api.albums.getPhotos(album.id);
-      final getUser = api.users.get(album.userId);
-
-      try {
-        photos = await getPhotos.bodyOrThrow();
-      } on Exception catch (error, stackTrace) {
-        logger.severe(
-          'Failed to get photos for album ${album.id}',
-          error,
-          stackTrace,
-        );
-        return;
-      }
-
-      try {
-        user = await getUser.bodyOrThrow();
-      } on Exception catch (error, stackTrace) {
-        logger.severe('Failed to get user ${album.userId}', error, stackTrace);
-        return;
-      }
-
-      if (!mounted) {
-        return;
-      }
-
-      unawaited(
-        context.pushRoute(AlbumRoute(album: album, photos: photos, user: user)),
-      );
-    });
+    return AlbumTile(album: item);
   }
 }

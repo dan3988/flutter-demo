@@ -23,5 +23,32 @@
         "type": "int"
       }
     }
-  }
+  },
+  "usersViewAlbums": "View Albums",
+  "usersViewPosts": "View Posts",
+  "pageTitleUserPosts": "Posts by {name}",
+  "@pageTitleUserPosts": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "pageTitleUserTodos": "Todos by {name}",
+  "@pageTitleUserTodos": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "pageTitleUserAlbums": "Albums by {name}",
+  "@pageTitleUserAlbums": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "usersViewTodos": "View Todos"
 }

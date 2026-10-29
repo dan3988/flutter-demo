@@ -149,14 +149,14 @@ abstract class UserService extends ChopperService {
   @GET()
   Result<List<User>> _getAll(@abortTrigger Future<void>? abortTrigger);
 
-  Result<List<Comment>> getComments(int id, {Future<void>? abortTrigger}) {
-    _addFactory(Comment.fromJson);
+  Result<List<Album>> getAlbums(int id, {Future<void>? abortTrigger}) {
+    _addFactory(Album.fromJson);
 
-    return _getComments(id, abortTrigger);
+    return _getAlbums(id, abortTrigger);
   }
 
-  @GET(path: '/{userId}/comments')
-  Result<List<Comment>> _getComments(
+  @GET(path: '/{userId}/albums')
+  Result<List<Album>> _getAlbums(
     @path int userId,
     @abortTrigger Future<void>? abortTrigger,
   );

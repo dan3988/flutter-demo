@@ -153,6 +153,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'+{count} more'**
   String moreItems({required int count});
+
+  /// No description provided for @usersViewAlbums.
+  ///
+  /// In en, this message translates to:
+  /// **'View Albums'**
+  String get usersViewAlbums;
+
+  /// No description provided for @usersViewPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'View Posts'**
+  String get usersViewPosts;
+
+  /// No description provided for @pageTitleUserPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Posts by {name}'**
+  String pageTitleUserPosts({required String name});
+
+  /// No description provided for @pageTitleUserTodos.
+  ///
+  /// In en, this message translates to:
+  /// **'Todos by {name}'**
+  String pageTitleUserTodos({required String name});
+
+  /// No description provided for @pageTitleUserAlbums.
+  ///
+  /// In en, this message translates to:
+  /// **'Albums by {name}'**
+  String pageTitleUserAlbums({required String name});
+
+  /// No description provided for @usersViewTodos.
+  ///
+  /// In en, this message translates to:
+  /// **'View Todos'**
+  String get usersViewTodos;
 }
 
 class _AppLocalizationsDelegate

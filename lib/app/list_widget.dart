@@ -5,6 +5,27 @@ import 'package:provider/provider.dart';
 
 typedef FutureListResponse<T> = Future<Response<List<T>>>;
 
+class ListWidget<T> extends StatelessWidget {
+  final List<T> items;
+  final Widget Function(BuildContext, T) itemBuilder;
+
+  const ListWidget({super.key, required this.items, required this.itemBuilder});
+
+  @override
+  Widget build(BuildContext context) {
+    const divider = SizedBox(height: AppStyle.paddingMed);
+
+    return ListView.separated(
+      padding: AppStyle.paddingMedAll,
+      separatorBuilder: (context, _) => divider,
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return itemBuilder(context, items[index]);
+      },
+    );
+  }
+}
+
 abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
     with DisposedSignalState {
   late Future<List<T>> _dataFuture;
@@ -37,23 +58,12 @@ abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
           return buildError(context);
         }
 
-        final posts = state.data;
-        if (posts == null) {
+        final items = state.data;
+        if (items == null) {
           return Center(child: SizedBox(child: CircularProgressIndicator()));
         }
 
-        const divider = SizedBox(
-          height: AppStyle.paddingMed,
-        );
-
-        return ListView.separated(
-          padding: AppStyle.paddingMedAll,
-          separatorBuilder: (context, _) => divider,
-          itemCount: posts.length,
-          itemBuilder: (context, index) {
-            return buildItem(context, posts[index]);
-          },
-        );
+        return ListWidget(items: items, itemBuilder: buildItem);
       },
     );
   }

@@ -9,5 +9,8 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: PostRoute.page),
     AutoRoute(page: AlbumRoute.page),
     AutoRoute(page: UserRoute.page),
+    AutoRoute(page: UserAlbumsRoute.page),
+    AutoRoute(page: UserPostsRoute.page),
+    AutoRoute(page: UserTodosRoute.page),
   ];
 }
