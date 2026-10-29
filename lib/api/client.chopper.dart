@@ -19,7 +19,7 @@ final class _$AlbumService extends AlbumService {
   final Type definitionType = AlbumService;
 
   @override
-  Future<Response<List<Album>>> _get(int id, Future<void>? abortTrigger) {
+  Future<Response<Album>> _get(int id, Future<void>? abortTrigger) {
     final Uri $url = Uri.parse('/albums/${id}');
     final Request $request = Request(
       'GET',
@@ -27,7 +27,7 @@ final class _$AlbumService extends AlbumService {
       client.baseUrl,
       abortTrigger: abortTrigger,
     );
-    return client.send<List<Album>, Album>($request);
+    return client.send<Album, Album>($request);
   }
 
   @override
@@ -40,6 +40,18 @@ final class _$AlbumService extends AlbumService {
       abortTrigger: abortTrigger,
     );
     return client.send<List<Album>, Album>($request);
+  }
+
+  @override
+  Future<Response<List<Photo>>> _getPhotos(int id, Future<void>? abortTrigger) {
+    final Uri $url = Uri.parse('/albums/${id}/photos');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      abortTrigger: abortTrigger,
+    );
+    return client.send<List<Photo>, Photo>($request);
   }
 }
 

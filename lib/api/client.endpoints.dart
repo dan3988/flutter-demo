@@ -5,17 +5,14 @@ abstract class AlbumService extends ChopperService {
   @override
   Type get definitionType => AlbumService;
 
-  Result<List<Album>> get(int id, {Future<void>? abortTrigger}) {
+  Result<Album> get(int id, {Future<void>? abortTrigger}) {
     _addFactory(Album.fromJson);
 
     return _get(id, abortTrigger);
   }
 
   @GET(path: '/{id}')
-  Result<List<Album>> _get(
-    @path int id,
-    @abortTrigger Future<void>? abortTrigger,
-  );
+  Result<Album> _get(@path int id, @abortTrigger Future<void>? abortTrigger);
 
   Result<List<Album>> getAll({Future<void>? abortTrigger}) {
     _addFactory(Album.fromJson);
@@ -25,6 +22,18 @@ abstract class AlbumService extends ChopperService {
 
   @GET()
   Result<List<Album>> _getAll(@abortTrigger Future<void>? abortTrigger);
+
+  Result<List<Photo>> getPhotos(int id, {Future<void>? abortTrigger}) {
+    _addFactory(Photo.fromJson);
+
+    return _getPhotos(id, abortTrigger);
+  }
+
+  @GET(path: '/{id}/photos')
+  Result<List<Photo>> _getPhotos(
+    @path int id,
+    @abortTrigger Future<void>? abortTrigger,
+  );
 }
 
 @ChopperApi(baseUrl: '/comments')
@@ -66,10 +75,7 @@ abstract class PostService extends ChopperService {
   }
 
   @GET(path: '/{id}')
-  Result<Post> _get(
-    @path int id,
-    @abortTrigger Future<void>? abortTrigger,
-  );
+  Result<Post> _get(@path int id, @abortTrigger Future<void>? abortTrigger);
 
   Result<List<Post>> getAll({Future<void>? abortTrigger}) {
     _addFactory(Post.fromJson);

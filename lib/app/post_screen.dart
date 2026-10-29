@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
+import 'package:axcend/app/user_widget.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
 import 'package:provider/provider.dart';
@@ -120,6 +121,9 @@ class _PostWidget extends StatelessWidget {
               ),
             ),
           ),
+        ),
+        UserWidget(
+          user: user,
         ),
         Text(
           'Comments (${comments.length})',
