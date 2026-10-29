@@ -1,6 +1,5 @@
 import 'package:axcend/app/albums_list.dart';
 import 'package:axcend/app/posts_list.dart';
-import 'package:axcend/app/todo_list.dart';
 import 'package:axcend/app/users_list.dart';
 import 'package:axcend/ui.dart';
 
@@ -15,13 +14,10 @@ class HomeScreen extends StatefulWidget {
 enum _HomeTab {
   users(Icons.person, AppText.pageTitleUsers, _buildUsers),
   posts(Icons.textsms, AppText.pageTitlePosts, _buildPosts),
-  todos(Icons.checklist, AppText.pageTitleTodos, _buildTodos),
   albums(Icons.photo, AppText.pageTitleAlbums, _buildAlbums),
   ;
 
   static Widget _buildUsers(BuildContext _) => const UsersListWidget();
-
-  static Widget _buildTodos(BuildContext _) => const TodosListWidget();
 
   static Widget _buildPosts(BuildContext _) => const PostsListWidget();
 
