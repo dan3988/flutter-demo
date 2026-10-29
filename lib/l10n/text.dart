@@ -147,6 +147,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Users'**
   String get pageTitleUsers;
+
+  /// No description provided for @moreItems.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} more'**
+  String moreItems({required int count});
 }
 
 class _AppLocalizationsDelegate

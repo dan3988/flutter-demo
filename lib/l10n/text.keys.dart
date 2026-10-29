@@ -16,8 +16,14 @@ sealed class AppText extends LocalizationMessage<l.AppLocalizations> {
   /// No description provided for @postComments.
   ///
   /// In en, this message translates to:
-  /// **'Comments (\$count)'**
+  /// **'Comments ({count})'**
   const factory AppText.postComments({required int count}) = _C8;
+
+  /// No description provided for @moreItems.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} more'**
+  const factory AppText.moreItems({required int count}) = _C9;
 
   /// No description provided for @appErrorGeneric.
   ///
@@ -158,4 +164,16 @@ final class _C8 extends AppText {
 
   @override
   toString() => 'AppText.postComments';
+}
+
+final class _C9 extends AppText {
+  const _C9({required this.count});
+
+  final int count;
+
+  @override
+  getText(c, l) => l.moreItems(count: count);
+
+  @override
+  toString() => 'AppText.moreItems';
 }

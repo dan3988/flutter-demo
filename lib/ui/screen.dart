@@ -2,6 +2,8 @@ import 'package:axcend/ui.dart';
 
 @immutable
 class SafeAreaConfig {
+  static const SafeAreaConfig all = .new();
+
   final bool left;
   final bool top;
   final bool right;
@@ -19,6 +21,7 @@ class SafeAreaConfig {
   });
 }
 
+/// Helper widget for creating a [Scaffold] with an [AppBar].
 class Screen extends StatelessWidget {
   final Widget body;
   final Widget? title;

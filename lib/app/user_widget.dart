@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
+import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
 
 class UserWidget extends StatelessWidget {
@@ -18,7 +20,7 @@ class UserWidget extends StatelessWidget {
         leading: Icon(Icons.person_2_outlined),
         title: Text(user.username),
         onTap: () {
-          // TODO: navigate to user screen once implemented
+          context.pushRoute(UserRoute(user: user));
         },
       ),
     );

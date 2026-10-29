@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
+import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/list_widget.dart';
 import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
@@ -28,17 +29,9 @@ class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post>
 
   @override
   Widget buildItem(BuildContext context, Post item) {
-    final theme = Theme.of(context);
-    return ListTile(
-      title: Text(
-        item.title,
-        style: theme.textTheme.titleLarge?.copyWith(overflow: .ellipsis),
-      ),
-      subtitle: Text(
-        item.body,
-        maxLines: 1,
-        style: theme.textTheme.labelMedium?.copyWith(overflow: .ellipsis),
-      ),
+    return ItemTile(
+      title: Text(item.title),
+      subtitle: Text(item.body, maxLines: 1),
       onTap: () => _openPost(item),
     );
   }
@@ -75,7 +68,9 @@ class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post>
       }
 
       unawaited(
-        context.pushRoute(PostRoute(post: post, comments: comments, user: user)),
+        context.pushRoute(
+          PostRoute(post: post, comments: comments, user: user),
+        ),
       );
     });
   }

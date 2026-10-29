@@ -36,4 +36,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pageTitleUsers => 'Users';
+
+  @override
+  String moreItems({required int count}) {
+    return '+$count more';
+  }
 }

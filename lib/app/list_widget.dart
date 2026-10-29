@@ -42,12 +42,12 @@ abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
           return Center(child: SizedBox(child: CircularProgressIndicator()));
         }
 
-        final divider = Divider(
-          height: 1,
-          color: Theme.of(context).colorScheme.outline,
+        const divider = SizedBox(
+          height: AppStyle.paddingMed,
         );
 
         return ListView.separated(
+          padding: AppStyle.paddingMedAll,
           separatorBuilder: (context, _) => divider,
           itemCount: posts.length,
           itemBuilder: (context, index) {

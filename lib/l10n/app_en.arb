@@ -15,5 +15,13 @@
   "pageTitlePosts": "Posts",
   "pageTitleTodos": "Todos",
   "pageTitleUser": "User",
-  "pageTitleUsers": "Users"
+  "pageTitleUsers": "Users",
+  "moreItems": "+{count} more",
+  "@moreItems": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
 }

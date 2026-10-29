@@ -2,6 +2,7 @@ import 'package:auto_route/annotations.dart';
 import 'package:axcend/app/albums_list.dart';
 import 'package:axcend/app/posts_list.dart';
 import 'package:axcend/app/todo_list.dart';
+import 'package:axcend/app/users_list.dart';
 import 'package:axcend/ui.dart';
 
 @RoutePage()
@@ -13,10 +14,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 enum _HomeTab {
+  users(Icons.person, AppText.pageTitleUsers, _buildUsers),
   posts(Icons.textsms, AppText.pageTitlePosts, _buildPosts),
   todos(Icons.checklist, AppText.pageTitleTodos, _buildTodos),
   albums(Icons.photo, AppText.pageTitleAlbums, _buildAlbums),
   ;
+
+  static Widget _buildUsers(BuildContext _) => const UsersListWidget();
 
   static Widget _buildTodos(BuildContext _) => const TodosListWidget();
 
@@ -39,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final currentTab = _HomeTab.values[_currentTab];
     final theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.colorScheme.surfaceContainer,
       appBar: AppBar(
         title: Localized(text: currentTab.title),
         backgroundColor: theme.colorScheme.primary,
@@ -50,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
           highlightColor: theme.colorScheme.onPrimary.withValues(alpha: 0.1),
         ),
         child: BottomNavigationBar(
+          type: .fixed,
           currentIndex: _currentTab,
           backgroundColor: theme.colorScheme.primary,
           selectedItemColor: theme.colorScheme.onPrimary,

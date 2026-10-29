@@ -16,7 +16,7 @@ void main() {
   final api = PlaceholderApi(
     baseUrl: Uri.parse(Environment.apiUrl),
     logger: getLogger(PlaceholderApi),
-    simulateSlowConnection: kDebugMode,
+    //simulateSlowConnection: kDebugMode,
   );
 
   runApp(

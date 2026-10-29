@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
+import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/list_widget.dart';
 import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
@@ -29,7 +30,7 @@ class _AlbumsListWidgetState extends ListWidgetState<AlbumsListWidget, Album>
   @override
   Widget buildItem(BuildContext context, Album item) {
     final theme = Theme.of(context);
-    return ListTile(
+    return ItemTile(
       title: Text(
         item.title,
         style: theme.textTheme.titleLarge?.copyWith(overflow: .ellipsis),

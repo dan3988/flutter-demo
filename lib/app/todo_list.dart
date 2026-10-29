@@ -1,7 +1,6 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:axcend/api/client.dart';
+import 'package:axcend/app/item_tile.dart';
 import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
 
@@ -28,7 +27,7 @@ class _TodosListWidgetState extends ListWidgetState<TodosListWidget, Todo> {
   @override
   Widget buildItem(BuildContext context, Todo item) {
     final theme = Theme.of(context);
-    return ListTile(
+    return ItemTile(
       leading: item.completed
           ? Icon(Icons.check_circle, color: Colors.green)
           : Icon(Icons.cancel, color: Colors.red),
