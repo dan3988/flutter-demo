@@ -11,12 +11,28 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:axcend/app/post_screen.dart' as _i1;
-import 'package:axcend/app/posts_screen.dart' as _i2;
+import 'package:axcend/app/home_screen.dart' as _i1;
+import 'package:axcend/app/post_screen.dart' as _i2;
 import 'package:axcend/ui.dart' as _i4;
 
 /// generated route for
-/// [_i1.PostScreen]
+/// [_i1.HomeScreen]
+class HomeRoute extends _i3.PageRouteInfo<void> {
+  const HomeRoute({List<_i3.PageRouteInfo>? children})
+    : super(HomeRoute.name, initialChildren: children);
+
+  static const String name = 'HomeRoute';
+
+  static _i3.PageInfo page = _i3.PageInfo(
+    name,
+    builder: (data) {
+      return const _i1.HomeScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i2.PostScreen]
 class PostRoute extends _i3.PageRouteInfo<PostRouteArgs> {
   PostRoute({
     _i4.Key? key,
@@ -34,7 +50,7 @@ class PostRoute extends _i3.PageRouteInfo<PostRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<PostRouteArgs>();
-      return _i1.PostScreen(key: args.key, postId: args.postId);
+      return _i2.PostScreen(key: args.key, postId: args.postId);
     },
   );
 }
@@ -60,20 +76,4 @@ class PostRouteArgs {
 
   @override
   int get hashCode => key.hashCode ^ postId.hashCode;
-}
-
-/// generated route for
-/// [_i2.PostsScreen]
-class PostsRoute extends _i3.PageRouteInfo<void> {
-  const PostsRoute({List<_i3.PageRouteInfo>? children})
-    : super(PostsRoute.name, initialChildren: children);
-
-  static const String name = 'PostsRoute';
-
-  static _i3.PageInfo page = _i3.PageInfo(
-    name,
-    builder: (data) {
-      return const _i2.PostsScreen();
-    },
-  );
 }
