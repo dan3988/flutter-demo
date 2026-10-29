@@ -1,0 +1,5 @@
+arb-dir: lib/l10n
+template-arb-file: app_en.arb
+output-localization-file: text.dart
+use-named-parameters: true
+nullable-getter: false

@@ -28,7 +28,7 @@ class _PostScreenState extends State<PostScreen> with DisposedSignalState {
     final PostScreen(:post, :user, :comments) = widget;
     final theme = Theme.of(context);
     return Screen(
-      title: Text('Post'),
+      title: Localized(text: AppText.pageTitlePost),
       safeArea: .pad(AppStyle.paddingMedAll),
       body: Column(
         mainAxisSize: .max,
@@ -56,8 +56,8 @@ class _PostScreenState extends State<PostScreen> with DisposedSignalState {
             ),
           ),
           UserWidget(user: user),
-          Text(
-            'Comments (${comments.length})',
+          Localized(
+            text: AppText.postComments(count: comments.length),
             style: theme.textTheme.titleMedium,
           ),
           Expanded(

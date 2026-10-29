@@ -13,9 +13,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 enum _HomeTab {
-  posts(Icons.textsms, 'Posts', _buildPosts),
-  todos(Icons.checklist, 'Todos', _buildTodos),
-  albums(Icons.photo, 'Albums', _buildAlbums),
+  posts(Icons.textsms, AppText.pageTitlePosts, _buildPosts),
+  todos(Icons.checklist, AppText.pageTitleTodos, _buildTodos),
+  albums(Icons.photo, AppText.pageTitleAlbums, _buildAlbums),
   ;
 
   static Widget _buildTodos(BuildContext _) => const TodosListWidget();
@@ -25,7 +25,7 @@ enum _HomeTab {
   static Widget _buildAlbums(BuildContext _) => const AlbumsListWidget();
 
   final IconData icon;
-  final String title;
+  final Message title;
   final WidgetBuilder builder;
 
   const _HomeTab(this.icon, this.title, this.builder);
@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('App Title'),
+        title: Localized(text: currentTab.title),
         backgroundColor: theme.colorScheme.primary,
         foregroundColor: theme.colorScheme.onPrimary,
       ),
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
             for (final tab in _HomeTab.values)
               BottomNavigationBarItem(
                 icon: Icon(tab.icon),
-                label: tab.title,
+                label: tab.title.resolve(context),
               ),
           ],
         ),

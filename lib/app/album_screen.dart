@@ -20,7 +20,7 @@ class AlbumScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Screen(
       safeArea: .new(),
-      title: Text(album.title),
+      title: Localized(text: AppText.pageTitleAlbum),
       body: Column(
         children: [
           Expanded(

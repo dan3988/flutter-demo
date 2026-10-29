@@ -1,6 +1,7 @@
 import 'package:axcend/api/client.dart';
 import 'package:axcend/environment.dart';
 import 'package:axcend/app_router.dart';
+import 'package:axcend/l10n/text.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
 import 'package:provider/provider.dart';
@@ -46,11 +47,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: 'Axcend Demo',
       theme: _theme(context, .light),
       themeMode: .system,
       darkTheme: _theme(context, .dark),
       routerConfig: router.config(),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       builder: (context, child) {
         return Loader(child: child!);
       },

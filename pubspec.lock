@@ -262,6 +262,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.0.0"
+  flutter_localizations:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -419,6 +424,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  localized_text_key_generator:
+    dependency: "direct dev"
+    description:
+      name: localized_text_key_generator
+      sha256: "2d658f5c0e3f6901824b6b34ec85a8b3f84fe8c828164243881eeaca08db18c1"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
+  localized_text_widget:
+    dependency: "direct main"
+    description:
+      name: localized_text_widget
+      sha256: "3a89a49121c8210a13fe1cbdd75c249e67e8a99123575f0a5a5d6433d6ecfd25"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   logging:
     dependency: "direct main"
     description:

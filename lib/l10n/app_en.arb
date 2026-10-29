@@ -1,0 +1,19 @@
+{
+  "@@locale": "en",
+  "postComments": "Comments ({count})",
+  "@postComments": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "appErrorGeneric": "An unexpected error occurred.",
+  "pageTitleAlbum": "Album",
+  "pageTitleAlbums": "Albums",
+  "pageTitlePost": "Post",
+  "pageTitlePosts": "Posts",
+  "pageTitleTodos": "Todos",
+  "pageTitleUser": "User",
+  "pageTitleUsers": "Users"
+}

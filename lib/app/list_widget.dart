@@ -60,8 +60,8 @@ abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
 
   Widget buildError(BuildContext context) {
     final theme = Theme.of(context);
-    return Text(
-      'An unexpected error occurred.',
+    return Localized(
+      text: AppText.appErrorGeneric,
       style: theme.textTheme.titleMedium?.copyWith(
         color: theme.colorScheme.error,
       ),
