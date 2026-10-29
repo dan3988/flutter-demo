@@ -6,17 +6,26 @@ import 'package:axcend/ui.dart';
 typedef FutureListResponse<T> = Future<Response<List<T>>>;
 
 class ListWidget<T> extends StatelessWidget {
+  final ScrollController? controller;
   final List<T> items;
   final Widget Function(BuildContext, T) itemBuilder;
+  final EdgeInsets padding;
 
-  const ListWidget({super.key, required this.items, required this.itemBuilder});
+  const ListWidget({
+    super.key,
+    required this.items,
+    required this.itemBuilder,
+    this.controller,
+    this.padding = AppStyle.paddingMedAll,
+  });
 
   @override
   Widget build(BuildContext context) {
     const divider = SizedBox(height: AppStyle.paddingMed);
 
     return ListView.separated(
-      padding: AppStyle.paddingMedAll,
+      controller: controller,
+      padding: padding,
       separatorBuilder: (context, _) => divider,
       itemCount: items.length,
       itemBuilder: (context, index) {
