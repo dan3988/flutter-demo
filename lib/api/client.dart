@@ -40,6 +40,7 @@ class PlaceholderApi {
         _$CommentService(),
         _$PhotoService(),
         _$PostService(),
+        _$TodoService(),
         _$UserService(),
       ],
       interceptors: [
@@ -65,6 +66,7 @@ class PlaceholderApi {
   final CommentService comments;
   final PhotoService photos;
   final PostService posts;
+  final TodoService todos;
   final UserService users;
 
   PlaceholderApi._(this._client)
@@ -72,6 +74,7 @@ class PlaceholderApi {
       comments = _client.getService(),
       photos = _client.getService(),
       posts = _client.getService(),
+      todos = _client.getService(),
       users = _client.getService();
 
   void dispose() {

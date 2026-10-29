@@ -67,7 +67,7 @@ final class _$CommentService extends CommentService {
   final Type definitionType = CommentService;
 
   @override
-  Future<Response<List<Comment>>> _get(int id, Future<void>? abortTrigger) {
+  Future<Response<Comment>> _get(int id, Future<void>? abortTrigger) {
     final Uri $url = Uri.parse('/comments/${id}');
     final Request $request = Request(
       'GET',
@@ -75,7 +75,7 @@ final class _$CommentService extends CommentService {
       client.baseUrl,
       abortTrigger: abortTrigger,
     );
-    return client.send<List<Comment>, Comment>($request);
+    return client.send<Comment, Comment>($request);
   }
 
   @override
@@ -88,6 +88,78 @@ final class _$CommentService extends CommentService {
       abortTrigger: abortTrigger,
     );
     return client.send<List<Comment>, Comment>($request);
+  }
+}
+
+// coverage:ignore-file
+// ignore_for_file: type=lint
+final class _$TodoService extends TodoService {
+  _$TodoService([ChopperClient? client]) {
+    if (client == null) return;
+    this.client = client;
+  }
+
+  @override
+  final Type definitionType = TodoService;
+
+  @override
+  Future<Response<Todo>> _get(int id, Future<void>? abortTrigger) {
+    final Uri $url = Uri.parse('/todos/${id}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      abortTrigger: abortTrigger,
+    );
+    return client.send<Todo, Todo>($request);
+  }
+
+  @override
+  Future<Response<List<Todo>>> _getAll(Future<void>? abortTrigger) {
+    final Uri $url = Uri.parse('/todos');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      abortTrigger: abortTrigger,
+    );
+    return client.send<List<Todo>, Todo>($request);
+  }
+}
+
+// coverage:ignore-file
+// ignore_for_file: type=lint
+final class _$PhotoService extends PhotoService {
+  _$PhotoService([ChopperClient? client]) {
+    if (client == null) return;
+    this.client = client;
+  }
+
+  @override
+  final Type definitionType = PhotoService;
+
+  @override
+  Future<Response<Photo>> _get(int id, Future<void>? abortTrigger) {
+    final Uri $url = Uri.parse('/photos/${id}');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      abortTrigger: abortTrigger,
+    );
+    return client.send<Photo, Photo>($request);
+  }
+
+  @override
+  Future<Response<List<Photo>>> _getAll(Future<void>? abortTrigger) {
+    final Uri $url = Uri.parse('/photos');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      abortTrigger: abortTrigger,
+    );
+    return client.send<List<Photo>, Photo>($request);
   }
 }
 
@@ -144,42 +216,6 @@ final class _$PostService extends PostService {
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-final class _$PhotoService extends PhotoService {
-  _$PhotoService([ChopperClient? client]) {
-    if (client == null) return;
-    this.client = client;
-  }
-
-  @override
-  final Type definitionType = PhotoService;
-
-  @override
-  Future<Response<List<Photo>>> _get(int id, Future<void>? abortTrigger) {
-    final Uri $url = Uri.parse('/photos/${id}');
-    final Request $request = Request(
-      'GET',
-      $url,
-      client.baseUrl,
-      abortTrigger: abortTrigger,
-    );
-    return client.send<List<Photo>, Photo>($request);
-  }
-
-  @override
-  Future<Response<List<Photo>>> _getAll(Future<void>? abortTrigger) {
-    final Uri $url = Uri.parse('/photos');
-    final Request $request = Request(
-      'GET',
-      $url,
-      client.baseUrl,
-      abortTrigger: abortTrigger,
-    );
-    return client.send<List<Photo>, Photo>($request);
-  }
-}
-
-// coverage:ignore-file
-// ignore_for_file: type=lint
 final class _$UserService extends UserService {
   _$UserService([ChopperClient? client]) {
     if (client == null) return;
@@ -215,10 +251,10 @@ final class _$UserService extends UserService {
 
   @override
   Future<Response<List<Comment>>> _getComments(
-    int id,
+    int userId,
     Future<void>? abortTrigger,
   ) {
-    final Uri $url = Uri.parse('/users/${id}/comments');
+    final Uri $url = Uri.parse('/users/${userId}/comments');
     final Request $request = Request(
       'GET',
       $url,
@@ -229,8 +265,26 @@ final class _$UserService extends UserService {
   }
 
   @override
-  Future<Response<List<Post>>> _getPosts(int id, Future<void>? abortTrigger) {
-    final Uri $url = Uri.parse('/users/users/{userId}/posts');
+  Future<Response<List<Todo>>> _getTodos(
+    int userId,
+    Future<void>? abortTrigger,
+  ) {
+    final Uri $url = Uri.parse('/users/${userId}/todos');
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+      abortTrigger: abortTrigger,
+    );
+    return client.send<List<Todo>, Todo>($request);
+  }
+
+  @override
+  Future<Response<List<Post>>> _getPosts(
+    int userId,
+    Future<void>? abortTrigger,
+  ) {
+    final Uri $url = Uri.parse('/users/${userId}/posts');
     final Request $request = Request(
       'GET',
       $url,

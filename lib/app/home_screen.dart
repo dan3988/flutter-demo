@@ -1,6 +1,7 @@
 import 'package:auto_route/annotations.dart';
 import 'package:axcend/app/albums_list.dart';
 import 'package:axcend/app/posts_list.dart';
+import 'package:axcend/app/todo_list.dart';
 import 'package:axcend/ui.dart';
 
 @RoutePage()
@@ -17,7 +18,7 @@ enum _HomeTab {
   albums(Icons.photo, 'Albums', _buildAlbums),
   ;
 
-  static Widget _buildTodos(BuildContext _) => const SizedBox.shrink();
+  static Widget _buildTodos(BuildContext _) => const TodosListWidget();
 
   static Widget _buildPosts(BuildContext _) => const PostsListWidget();
 

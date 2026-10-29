@@ -2,9 +2,6 @@ part of 'client.dart';
 
 @ChopperApi(baseUrl: '/albums')
 abstract class AlbumService extends ChopperService {
-  @override
-  Type get definitionType => AlbumService;
-
   Result<Album> get(int id, {Future<void>? abortTrigger}) {
     _addFactory(Album.fromJson);
 
@@ -38,20 +35,14 @@ abstract class AlbumService extends ChopperService {
 
 @ChopperApi(baseUrl: '/comments')
 abstract class CommentService extends ChopperService {
-  @override
-  Type get definitionType => CommentService;
-
-  Result<List<Comment>> get(int id, {Future<void>? abortTrigger}) {
+  Result<Comment> get(int id, {Future<void>? abortTrigger}) {
     _addFactory(Comment.fromJson);
 
     return _get(id, abortTrigger);
   }
 
   @GET(path: '/{id}')
-  Result<List<Comment>> _get(
-    @path int id,
-    @abortTrigger Future<void>? abortTrigger,
-  );
+  Result<Comment> _get(@path int id, @abortTrigger Future<void>? abortTrigger);
 
   Result<List<Comment>> getAll({Future<void>? abortTrigger}) {
     _addFactory(Comment.fromJson);
@@ -63,11 +54,50 @@ abstract class CommentService extends ChopperService {
   Result<List<Comment>> _getAll(@abortTrigger Future<void>? abortTrigger);
 }
 
+@ChopperApi(baseUrl: '/todos')
+abstract class TodoService extends ChopperService {
+  Result<Todo> get(int id, {Future<void>? abortTrigger}) {
+    _addFactory(Todo.fromJson);
+
+    return _get(id, abortTrigger);
+  }
+
+  @GET(path: '/{id}')
+  Result<Todo> _get(@path int id, @abortTrigger Future<void>? abortTrigger);
+
+  Result<List<Todo>> getAll({Future<void>? abortTrigger}) {
+    _addFactory(Todo.fromJson);
+
+    return _getAll(abortTrigger);
+  }
+
+  @GET()
+  Result<List<Todo>> _getAll(@abortTrigger Future<void>? abortTrigger);
+}
+
+@ChopperApi(baseUrl: '/photos')
+abstract class PhotoService extends ChopperService {
+  Result<Photo> get(int id, {Future<void>? abortTrigger}) {
+    _addFactory(Photo.fromJson);
+
+    return _get(id, abortTrigger);
+  }
+
+  @GET(path: '/{id}')
+  Result<Photo> _get(@path int id, @abortTrigger Future<void>? abortTrigger);
+
+  Result<List<Photo>> getAll(Future<void>? abortTrigger) {
+    _addFactory(Photo.fromJson);
+
+    return _getAll(abortTrigger);
+  }
+
+  @GET()
+  Result<List<Photo>> _getAll(@abortTrigger Future<void>? abortTrigger);
+}
+
 @ChopperApi(baseUrl: '/posts')
 abstract class PostService extends ChopperService {
-  @override
-  Type get definitionType => PostService;
-
   Result<Post> get(int id, {Future<void>? abortTrigger}) {
     _addFactory(Post.fromJson);
 
@@ -99,35 +129,8 @@ abstract class PostService extends ChopperService {
   );
 }
 
-@ChopperApi(baseUrl: '/photos')
-abstract class PhotoService extends ChopperService {
-  Result<List<Photo>> get(int id, {Future<void>? abortTrigger}) {
-    _addFactory(Photo.fromJson);
-
-    return _get(id, abortTrigger);
-  }
-
-  @GET(path: '/{id}')
-  Result<List<Photo>> _get(
-    @path int id,
-    @abortTrigger Future<void>? abortTrigger,
-  );
-
-  Result<List<Photo>> getAll(Future<void>? abortTrigger) {
-    _addFactory(Photo.fromJson);
-
-    return _getAll(abortTrigger);
-  }
-
-  @GET()
-  Result<List<Photo>> _getAll(@abortTrigger Future<void>? abortTrigger);
-}
-
 @ChopperApi(baseUrl: '/users')
 abstract class UserService extends ChopperService {
-  @override
-  Type get definitionType => UserService;
-
   Result<User> get(int id, {Future<void>? abortTrigger}) {
     _addFactory(User.fromJson);
 
@@ -152,9 +155,21 @@ abstract class UserService extends ChopperService {
     return _getComments(id, abortTrigger);
   }
 
-  @GET(path: '/{id}/comments')
+  @GET(path: '/{userId}/comments')
   Result<List<Comment>> _getComments(
-    @path int id,
+    @path int userId,
+    @abortTrigger Future<void>? abortTrigger,
+  );
+
+  Result<List<Todo>> getTodos(int id, {Future<void>? abortTrigger}) {
+    _addFactory(Todo.fromJson);
+
+    return _getTodos(id, abortTrigger);
+  }
+
+  @GET(path: '/{userId}/todos')
+  Result<List<Todo>> _getTodos(
+    @path int userId,
     @abortTrigger Future<void>? abortTrigger,
   );
 
@@ -164,9 +179,9 @@ abstract class UserService extends ChopperService {
     return _getPosts(id, abortTrigger);
   }
 
-  @GET(path: '/users/{userId}/posts')
+  @GET(path: '/{userId}/posts')
   Result<List<Post>> _getPosts(
-    @path int id,
+    @path int userId,
     @abortTrigger Future<void>? abortTrigger,
   );
 }
