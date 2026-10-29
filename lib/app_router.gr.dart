@@ -114,11 +114,18 @@ class HomeRoute extends _i4.PageRouteInfo<void> {
 class PostRoute extends _i4.PageRouteInfo<PostRouteArgs> {
   PostRoute({
     _i5.Key? key,
-    required int postId,
+    required _i6.Post post,
+    required _i6.User user,
+    required List<_i6.Comment> comments,
     List<_i4.PageRouteInfo>? children,
   }) : super(
          PostRoute.name,
-         args: PostRouteArgs(key: key, postId: postId),
+         args: PostRouteArgs(
+           key: key,
+           post: post,
+           user: user,
+           comments: comments,
+         ),
          initialChildren: children,
        );
 
@@ -128,30 +135,51 @@ class PostRoute extends _i4.PageRouteInfo<PostRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<PostRouteArgs>();
-      return _i3.PostScreen(key: args.key, postId: args.postId);
+      return _i3.PostScreen(
+        key: args.key,
+        post: args.post,
+        user: args.user,
+        comments: args.comments,
+      );
     },
   );
 }
 
 class PostRouteArgs {
-  const PostRouteArgs({this.key, required this.postId});
+  const PostRouteArgs({
+    this.key,
+    required this.post,
+    required this.user,
+    required this.comments,
+  });
 
   final _i5.Key? key;
 
-  final int postId;
+  final _i6.Post post;
+
+  final _i6.User user;
+
+  final List<_i6.Comment> comments;
 
   @override
   String toString() {
-    return 'PostRouteArgs{key: $key, postId: $postId}';
+    return 'PostRouteArgs{key: $key, post: $post, user: $user, comments: $comments}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! PostRouteArgs) return false;
-    return key == other.key && postId == other.postId;
+    return key == other.key &&
+        post == other.post &&
+        user == other.user &&
+        const _i7.ListEquality<_i6.Comment>().equals(comments, other.comments);
   }
 
   @override
-  int get hashCode => key.hashCode ^ postId.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      post.hashCode ^
+      user.hashCode ^
+      const _i7.ListEquality<_i6.Comment>().hash(comments);
 }

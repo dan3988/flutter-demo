@@ -3,9 +3,7 @@ import 'package:axcend/api/client.dart';
 import 'package:axcend/app/list_widget.dart';
 import 'package:axcend/app_router.gr.dart';
 import 'package:axcend/ui.dart';
-import 'package:axcend/util.dart';
-
-final _log = getLogger(PostsListWidget);
+import 'package:provider/provider.dart';
 
 class PostsListWidget extends StatefulWidget {
   const PostsListWidget({super.key});
@@ -14,7 +12,8 @@ class PostsListWidget extends StatefulWidget {
   State<PostsListWidget> createState() => _PostsListWidgetState();
 }
 
-class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post> {
+class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post>
+    with LoggingStateMixin {
   @override
   FutureListResponse<Post> loadData(PlaceholderApi api) {
     return api.posts.getAll(abortTrigger: disposed);
@@ -22,7 +21,7 @@ class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post> {
 
   @override
   void onError(error, StackTrace stackTrace) {
-    _log.warning('Failed to load posts', error, stackTrace);
+    logger.warning('Failed to load posts', error, stackTrace);
   }
 
   @override
@@ -38,9 +37,40 @@ class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post> {
         maxLines: 1,
         style: theme.textTheme.labelMedium?.copyWith(overflow: .ellipsis),
       ),
-      onTap: () {
-        context.pushRoute(PostRoute(postId: item.id));
-      },
+      onTap: () => _openPost(item),
     );
+  }
+
+  Future<void> _openPost(Post post) async {
+    final List<Comment> comments;
+    final User user;
+
+    final api = Provider.of<PlaceholderApi>(context, listen: false);
+    final getComments = api.posts.getComments(post.id);
+    final getUser = api.users.get(post.userId);
+
+    try {
+      comments = await getComments.bodyOrThrow();
+    } on Exception catch (error, stackTrace) {
+      logger.severe(
+        'Failed to get comments for post ${post.id}',
+        error,
+        stackTrace,
+      );
+      return;
+    }
+
+    try {
+      user = await getUser.bodyOrThrow();
+    } on Exception catch (error, stackTrace) {
+      logger.severe('Failed to get user ${post.userId}', error, stackTrace);
+      return;
+    }
+
+    if (!mounted) {
+      return;
+    }
+
+    context.pushRoute(PostRoute(post: post, comments: comments, user: user));
   }
 }
