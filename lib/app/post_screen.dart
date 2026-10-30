@@ -1,6 +1,6 @@
 import 'package:axcend/api/client.dart';
 import 'package:axcend/app/item_tile.dart';
-import 'package:axcend/app/user_widget.dart';
+import 'package:axcend/app/author_tile.dart';
 import 'package:axcend/ui.dart';
 
 @RoutePage()
@@ -47,7 +47,7 @@ class _PostScreenState extends State<PostScreen> with DisposedSignalState {
               color: theme.colorScheme.onPrimaryContainer,
             ),
           ),
-          UserWidget(user: user),
+          AuthorTile(author: user),
           Localized(
             text: AppText.postComments(count: comments.length),
             style: theme.textTheme.titleMedium,

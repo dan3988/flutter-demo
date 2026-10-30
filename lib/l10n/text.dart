@@ -189,6 +189,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View Todos'**
   String get usersViewTodos;
+
+  /// No description provided for @itemAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'By {name} ({username})'**
+  String itemAuthor({required String name, required String username});
 }
 
 class _AppLocalizationsDelegate

@@ -65,4 +65,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get usersViewTodos => 'View Todos';
+
+  @override
+  String itemAuthor({required String name, required String username}) {
+    return 'By $name ($username)';
+  }
 }

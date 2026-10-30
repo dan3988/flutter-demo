@@ -50,5 +50,16 @@
       }
     }
   },
-  "usersViewTodos": "View Todos"
+  "usersViewTodos": "View Todos",
+  "itemAuthor": "By {name} ({username})",
+  "@itemAuthor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "username": {
+        "type": "String"
+      }
+    }
+  }
 }

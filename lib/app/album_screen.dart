@@ -1,7 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:axcend/api/client.dart';
-import 'package:axcend/app/user_widget.dart';
+import 'package:axcend/app/author_tile.dart';
 import 'package:axcend/ui.dart';
 
 @RoutePage()
@@ -30,7 +30,7 @@ class AlbumScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
             textAlign: .start,
           ),
-          UserWidget(user: user),
+          AuthorTile(author: user),
           Expanded(
             child: ClipPath(
               clipBehavior: .antiAlias,

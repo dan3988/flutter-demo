@@ -43,6 +43,15 @@ sealed class AppText extends LocalizationMessage<l.AppLocalizations> {
   /// **'Albums by {name}'**
   const factory AppText.pageTitleUserAlbums({required Object name}) = _C15;
 
+  /// No description provided for @itemAuthor.
+  ///
+  /// In en, this message translates to:
+  /// **'By {name} ({username})'**
+  const factory AppText.itemAuthor({
+    required Object name,
+    required Object username,
+  }) = _C16;
+
   /// No description provided for @appErrorGeneric.
   ///
   /// In en, this message translates to:
@@ -278,4 +287,21 @@ final class _C15 extends AppText {
 
   @override
   toString() => 'AppText.pageTitleUserAlbums';
+}
+
+final class _C16 extends AppText {
+  const _C16({required this.name, required this.username});
+
+  final Object name;
+
+  final Object username;
+
+  @override
+  getText(c, l) => l.itemAuthor(
+    name: Message.getString(c, name),
+    username: Message.getString(c, username),
+  );
+
+  @override
+  toString() => 'AppText.itemAuthor';
 }

@@ -1,10 +1,10 @@
 import 'package:axcend/api/client.dart';
 import 'package:axcend/ui.dart';
 
-class UserWidget extends StatelessWidget {
-  final User user;
+class AuthorTile extends StatelessWidget {
+  final User author;
 
-  const UserWidget({super.key, required this.user});
+  const AuthorTile({super.key, required this.author});
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,14 @@ class UserWidget extends StatelessWidget {
       child: ListTile(
         textColor: colors.onSecondaryContainer,
         leading: Icon(Icons.person_2_outlined),
-        title: Text(user.username),
+        title: Localized(
+          text: AppText.itemAuthor(
+            name: author.name,
+            username: author.username,
+          ),
+        ),
         onTap: () {
-          context.pushRoute(UserRoute(user: user));
+          context.pushRoute(UserRoute(user: author));
         },
       ),
     );
