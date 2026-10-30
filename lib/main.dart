@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
       themeMode: .system,
       darkTheme: _theme(context, .dark),
       routerConfig: router.config(),
+      supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       builder: (context, child) {
         return Loader(child: child!);
