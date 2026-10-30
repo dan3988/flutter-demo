@@ -1,5 +1,5 @@
-import 'package:axcend/api/client.dart';
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/api/client.dart';
+import 'package:flutter_demo/ui.dart';
 
 class AuthorTile extends StatelessWidget {
   final User author;

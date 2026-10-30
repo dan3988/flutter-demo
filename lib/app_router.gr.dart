@@ -11,17 +11,18 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 
 import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:axcend/api/client.dart' as _i10;
-import 'package:axcend/api/models.dart' as _i12;
-import 'package:axcend/app/album_screen.dart' as _i1;
-import 'package:axcend/app/home_screen.dart' as _i2;
-import 'package:axcend/app/post_screen.dart' as _i3;
-import 'package:axcend/app/user_albums_screen.dart' as _i4;
-import 'package:axcend/app/user_posts_screen.dart' as _i5;
-import 'package:axcend/app/user_screen.dart' as _i6;
-import 'package:axcend/app/user_todos_screen.dart' as _i7;
-import 'package:axcend/ui.dart' as _i9;
 import 'package:collection/collection.dart' as _i11;
+
+import 'package:flutter_demo/api/client.dart' as _i10;
+import 'package:flutter_demo/api/models.dart' as _i12;
+import 'package:flutter_demo/app/album_screen.dart' as _i1;
+import 'package:flutter_demo/app/home_screen.dart' as _i2;
+import 'package:flutter_demo/app/post_screen.dart' as _i3;
+import 'package:flutter_demo/app/user_albums_screen.dart' as _i4;
+import 'package:flutter_demo/app/user_posts_screen.dart' as _i5;
+import 'package:flutter_demo/app/user_screen.dart' as _i6;
+import 'package:flutter_demo/app/user_todos_screen.dart' as _i7;
+import 'package:flutter_demo/ui.dart' as _i9;
 
 /// generated route for
 /// [_i1.AlbumScreen]

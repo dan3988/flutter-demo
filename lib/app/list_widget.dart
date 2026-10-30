@@ -1,8 +1,9 @@
 import 'dart:async';
 
-import 'package:axcend/api/client.dart';
-import 'package:axcend/ui.dart';
 import 'package:chopper/chopper.dart' show Response;
+
+import 'package:flutter_demo/api/client.dart';
+import 'package:flutter_demo/ui.dart';
 
 class ListWidget<T> extends StatelessWidget {
   final ScrollController? controller;

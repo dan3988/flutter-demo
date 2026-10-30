@@ -1,6 +1,7 @@
-import 'package:axcend/util/duration_extensions.dart';
-import 'package:axcend/util/file_size.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_demo/util/duration_extensions.dart';
+import 'package:flutter_demo/util/file_size.dart';
 
 void main() {
   group('FileSize Unit Tests', () {

@@ -1,7 +1,7 @@
-import 'package:axcend/api/models.dart';
-import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/app/posts_list.dart';
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/api/models.dart';
+import 'package:flutter_demo/app/list_widget.dart';
+import 'package:flutter_demo/app/posts_list.dart';
+import 'package:flutter_demo/ui.dart';
 
 @RoutePage()
 class UserPostsScreen extends StatefulWidget {

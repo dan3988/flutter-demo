@@ -1,7 +1,7 @@
-import 'package:axcend/app/albums_list.dart';
-import 'package:axcend/app/posts_list.dart';
-import 'package:axcend/app/users_list.dart';
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/app/albums_list.dart';
+import 'package:flutter_demo/app/posts_list.dart';
+import 'package:flutter_demo/app/users_list.dart';
+import 'package:flutter_demo/ui.dart';
 
 @RoutePage()
 class HomeScreen extends StatefulWidget {

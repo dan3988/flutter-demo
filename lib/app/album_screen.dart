@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 
-import 'package:axcend/api/client.dart';
-import 'package:axcend/app/author_tile.dart';
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/api/client.dart';
+import 'package:flutter_demo/app/author_tile.dart';
+import 'package:flutter_demo/ui.dart';
 
 @RoutePage()
 class AlbumScreen extends StatelessWidget {

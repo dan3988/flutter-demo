@@ -1,9 +1,9 @@
-import 'package:axcend/api/client.dart';
-import 'package:axcend/app_router.dart';
-import 'package:axcend/environment.dart';
-import 'package:axcend/l10n/text.dart';
-import 'package:axcend/ui.dart';
-import 'package:axcend/util.dart';
+import 'package:flutter_demo/api/client.dart';
+import 'package:flutter_demo/app_router.dart';
+import 'package:flutter_demo/environment.dart';
+import 'package:flutter_demo/l10n/text.dart';
+import 'package:flutter_demo/ui.dart';
+import 'package:flutter_demo/util.dart';
 
 const filesDirName = 'app';
 
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Axcend Demo',
+      title: 'Flutter Demo',
       theme: _theme(context, .light),
       themeMode: .system,
       darkTheme: _theme(context, .dark),

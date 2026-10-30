@@ -1,7 +1,7 @@
-import 'package:axcend/app/item_tile.dart';
-import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/ui.dart';
-import 'package:axcend/util/logging.dart';
+import 'package:flutter_demo/app/item_tile.dart';
+import 'package:flutter_demo/app/list_widget.dart';
+import 'package:flutter_demo/ui.dart';
+import 'package:flutter_demo/util/logging.dart';
 
 class UsersListWidget extends StatelessWidget {
   static final _log = getLogger(UsersListWidget);

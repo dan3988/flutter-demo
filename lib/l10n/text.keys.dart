@@ -8,7 +8,8 @@
 // ignore_for_file: prefer_relative_imports, require_trailing_commas
 
 import 'package:localized_text_widget/localized_text_widget.dart';
-import 'package:axcend/l10n/text.dart' as l;
+
+import 'package:flutter_demo/l10n/text.dart' as l;
 
 sealed class AppText extends LocalizationMessage<l.AppLocalizations> {
   const AppText();

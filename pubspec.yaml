@@ -1,5 +1,5 @@
-name: axcend
-description: "A new Flutter project."
+name: flutter_demo
+description: "A demo flutter application."
 version: 1.0.0+1
 environment:
   sdk: ^3.11.0

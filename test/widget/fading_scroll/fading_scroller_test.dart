@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:axcend/ui/fading_edge_scroll_view.dart';
+import 'package:flutter_demo/ui/fading_edge_scroll_view.dart';
 
 const rainbow = [
   Colors.red,

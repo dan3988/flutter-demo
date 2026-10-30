@@ -1,6 +1,6 @@
 import 'package:provider/single_child_widget.dart';
 
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/ui.dart';
 
 class ClippedBorder extends SingleChildStatelessWidget {
   final ShapeBorder border;

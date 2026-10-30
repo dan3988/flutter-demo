@@ -1,10 +1,12 @@
-import 'package:axcend/api/client.dart';
-import 'package:axcend/app/author_tile.dart';
-import 'package:axcend/app/item_tile.dart';
-import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/l10n/text.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_test/flutter_test.dart';
+
+import 'package:flutter_demo/api/client.dart';
+import 'package:flutter_demo/app/author_tile.dart';
+import 'package:flutter_demo/app/item_tile.dart';
+import 'package:flutter_demo/app/list_widget.dart';
+import 'package:flutter_demo/l10n/text.dart';
 
 void main() {
   group('UI Components Widget Tests', () {

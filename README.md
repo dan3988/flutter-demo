@@ -1,8 +1,6 @@
-# Flutter Demo - Axcend
+# Flutter Demo
 
 A demo Flutter application that displays data from the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) REST API.
-
----
 
 ## Features
 
@@ -14,8 +12,6 @@ A demo Flutter application that displays data from the [JSONPlaceholder](https:/
 - **Localization (i18n)**: Fully internationalized strings using `.arb` files and `localized_text_widget`.
 - **Light & Dark Theme Support**: Automatic theme adaptation matching system preferences using Material 3.
 
----
-
 ## Tech Stack & Architecture
 
 - **Framework**: [Flutter SDK](https://flutter.dev) (Dart ^3.11)
@@ -25,8 +21,6 @@ A demo Flutter application that displays data from the [JSONPlaceholder](https:/
 - **JSON Serialization**: [json_serializable](https://pub.dev/packages/json_serializable) and [json_annotation](https://pub.dev/packages/json_annotation)
 - **Internationalization**: [localized_text_widget](https://pub.dev/packages/localized_text_widget) and `flutter_localizations`
 - **Testing**: [flutter_test](https://pub.dev/packages/flutter_test) unit and widget test suite
-
----
 
 ## Project Structure
 
@@ -42,8 +36,6 @@ lib/
 └── main.dart                  # Application entry point
 ```
 
----
-
 ## AI usage
 
 This project was developed with some AI assistance (Android Studio AI Assistant / Gemini) as a collaborative development tool. All AI generated code has been reviewed and verified or corrected by the developer.
@@ -54,8 +46,6 @@ This project was developed with some AI assistance (Android Studio AI Assistant 
 - **Localization**: Audited the application for hardcoded UI strings and migrated them to internationalized keys using `.arb` files and `localized_text_widget`.
 - **Automated Test Generation**: Created unit tests for JSON model serialization/deserialization (`models_test.dart`) and utility classes (`util_test.dart`), alongside widget tests for reactive components (`web_list_widget_test.dart`, `ui_components_test.dart`).
 - **Documentation & README**: Drafted and structured project documentation (`README.md`), detailing application features, tech stack, architecture layout, installation steps, and testing commands.
----
-
 ## Getting Started
 
 ### Prerequisites
@@ -70,7 +60,7 @@ flutter --version
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/dan3988/flutter-demo.git
-   cd axcend
+   cd flutter-demo
    ```
 
 2. **Fetch dependencies:**
@@ -82,8 +72,6 @@ flutter --version
    ```bash
    flutter run
    ```
-
----
 
 ## Running Tests
 

@@ -1,4 +1,4 @@
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/ui.dart';
 
 /// A scrollable widget that applies dynamic fading gradient edges at the start and end
 /// of its viewport.

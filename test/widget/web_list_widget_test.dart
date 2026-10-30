@@ -1,13 +1,15 @@
 import 'dart:async';
 
-import 'package:axcend/api/client.dart';
-import 'package:axcend/app/list_widget.dart';
-import 'package:axcend/l10n/text.dart';
-import 'package:chopper/chopper.dart' show Response;
 import 'package:flutter/material.dart';
+
+import 'package:chopper/chopper.dart' show Response;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
+
+import 'package:flutter_demo/api/client.dart';
+import 'package:flutter_demo/app/list_widget.dart';
+import 'package:flutter_demo/l10n/text.dart';
 
 void main() {
   group('WebListWidget Tests', () {

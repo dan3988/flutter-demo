@@ -4,7 +4,7 @@ import 'dart:math' as math;
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:provider/single_child_widget.dart';
 
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/ui.dart';
 
 class Loader extends SingleChildStatefulWidget {
   static Future<V> doWork<V>(

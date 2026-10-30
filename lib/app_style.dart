@@ -1,4 +1,4 @@
-import 'package:axcend/ui.dart';
+import 'package:flutter_demo/ui.dart';
 
 abstract class AppStyle {
   static const double paddingMed = 5;
