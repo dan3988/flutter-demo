@@ -6,16 +6,9 @@ import 'package:axcend/app/list_widget.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util.dart';
 
-final _log = getLogger(PostsListWidget);
-
-class PostsListWidget extends StatefulWidget {
-  const PostsListWidget({super.key});
-
-  @override
-  State<PostsListWidget> createState() => _PostsListWidgetState();
-}
-
 class PostTile extends StatelessWidget {
+  static final _log = getLogger(PostsListWidget);
+
   final Post post;
 
   const PostTile({super.key, required this.post});
@@ -69,20 +62,19 @@ class PostTile extends StatelessWidget {
   }
 }
 
-class _PostsListWidgetState extends ListWidgetState<PostsListWidget, Post>
-    with LoggingStateMixin {
-  @override
-  FutureListResponse<Post> loadData(PlaceholderApi api) {
-    return api.posts.getAll(abortTrigger: disposed);
-  }
+class PostsListWidget extends StatelessWidget {
+  static final _log = getLogger(PostsListWidget);
+
+  const PostsListWidget({super.key});
 
   @override
-  void onError(error, StackTrace stackTrace) {
-    logger.warning('Failed to load posts', error, stackTrace);
-  }
-
-  @override
-  Widget buildItem(BuildContext context, Post item) {
-    return PostTile(post: item);
+  Widget build(BuildContext context) {
+    return WebListWidget(
+      filter: (item, search) => item.title.toLowerCase().contains(search),
+      itemBuilder: (_, post) => PostTile(post: post),
+      retrieveData: (api, trigger) => api.posts.getAll(abortTrigger: trigger),
+      onError: (error, stackTrace) =>
+          _log.warning('Failed to load posts', error, stackTrace),
+    );
   }
 }

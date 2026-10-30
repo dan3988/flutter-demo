@@ -38,6 +38,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pageTitleUsers => 'Users';
 
   @override
+  String get searchHint => 'Search';
+
+  @override
   String moreItems({required int count}) {
     return '+$count more';
   }
@@ -69,5 +72,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String itemAuthor({required String name, required String username}) {
     return 'By $name ($username)';
+  }
+
+  @override
+  String userDisplay({required String name, required String username}) {
+    return '$name ($username)';
   }
 }

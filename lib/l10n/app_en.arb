@@ -16,6 +16,7 @@
   "pageTitleTodos": "Todos",
   "pageTitleUser": "User",
   "pageTitleUsers": "Users",
+  "searchHint": "Search",
   "moreItems": "+{count} more",
   "@moreItems": {
     "placeholders": {
@@ -53,6 +54,17 @@
   "usersViewTodos": "View Todos",
   "itemAuthor": "By {name} ({username})",
   "@itemAuthor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "userDisplay": "{name} ({username})",
+  "@userDisplay": {
     "placeholders": {
       "name": {
         "type": "String"

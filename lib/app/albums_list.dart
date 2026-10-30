@@ -6,9 +6,9 @@ import 'package:axcend/app/list_widget.dart';
 import 'package:axcend/ui.dart';
 import 'package:axcend/util/logging.dart';
 
-final _log = getLogger(AlbumTile);
-
 class AlbumTile extends StatelessWidget {
+  static final _log = getLogger(AlbumTile);
+
   final Album album;
 
   const AlbumTile({super.key, required this.album});
@@ -56,27 +56,18 @@ class AlbumTile extends StatelessWidget {
   }
 }
 
-class AlbumsListWidget extends StatefulWidget {
+class AlbumsListWidget extends StatelessWidget {
+  static final _log = getLogger(AlbumsListWidget);
+
   const AlbumsListWidget({super.key});
 
   @override
-  State<AlbumsListWidget> createState() => _AlbumsListWidgetState();
-}
-
-class _AlbumsListWidgetState extends ListWidgetState<AlbumsListWidget, Album>
-    with LoggingStateMixin {
-  @override
-  FutureListResponse<Album> loadData(PlaceholderApi api) {
-    return api.albums.getAll(abortTrigger: disposed);
-  }
-
-  @override
-  void onError(error, StackTrace stackTrace) {
-    logger.warning('Failed to load posts', error, stackTrace);
-  }
-
-  @override
-  Widget buildItem(BuildContext context, Album item) {
-    return AlbumTile(album: item);
+  Widget build(BuildContext context) {
+    return WebListWidget(
+      filter: (item, search) => item.title.toLowerCase().contains(search),
+      itemBuilder: (_, album) => AlbumTile(album: album),
+      retrieveData: (api, trigger) => api.albums.getAll(abortTrigger: trigger),
+      onError: (error, stackTrace) =>  _log.warning('Failed to load albums', error, stackTrace),
+    );
   }
 }

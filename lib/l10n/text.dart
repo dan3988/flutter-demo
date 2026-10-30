@@ -148,6 +148,12 @@ abstract class AppLocalizations {
   /// **'Users'**
   String get pageTitleUsers;
 
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get searchHint;
+
   /// No description provided for @moreItems.
   ///
   /// In en, this message translates to:
@@ -195,6 +201,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'By {name} ({username})'**
   String itemAuthor({required String name, required String username});
+
+  /// No description provided for @userDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} ({username})'**
+  String userDisplay({required String name, required String username});
 }
 
 class _AppLocalizationsDelegate

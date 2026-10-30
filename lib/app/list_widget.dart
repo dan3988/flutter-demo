@@ -1,9 +1,8 @@
-import 'package:chopper/chopper.dart' show Response;
+import 'dart:async';
 
 import 'package:axcend/api/client.dart';
 import 'package:axcend/ui.dart';
-
-typedef FutureListResponse<T> = Future<Response<List<T>>>;
+import 'package:chopper/chopper.dart' show Response;
 
 class ListWidget<T> extends StatelessWidget {
   final ScrollController? controller;
@@ -35,45 +34,138 @@ class ListWidget<T> extends StatelessWidget {
   }
 }
 
-abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
+typedef ItemFilter<T> = bool Function(T item, String filter);
+
+typedef FutureListResponse<T> = Future<Response<List<T>>>;
+typedef ListGetter<T> =
+    FutureListResponse<T> Function(
+      PlaceholderApi api,
+      Future<void> abortSignal,
+    );
+
+class WebListWidget<T> extends StatefulWidget {
+  final Widget Function(BuildContext, T) itemBuilder;
+  final ListGetter<T> retrieveData;
+  final void Function(dynamic error, StackTrace stackTrace) onError;
+  final ItemFilter<T>? filter;
+
+  const WebListWidget({
+    super.key,
+    required this.itemBuilder,
+    required this.retrieveData,
+    required this.onError,
+    this.filter,
+  });
+
+  @override
+  State<WebListWidget<T>> createState() => _WebListWidgetState<T>();
+}
+
+class _WebListWidgetState<T> extends State<WebListWidget<T>>
     with DisposedSignalState {
-  late Future<List<T>> _dataFuture;
-
-  FutureListResponse<T> loadData(PlaceholderApi api);
-
-  void onError(dynamic error, StackTrace stackTrace);
+  late final TextEditingController _searchController;
+  List<T>? _allItems;
+  List<T>? _filteredItems;
+  ItemFilter<T>? _filter;
+  bool _isErrored = false;
 
   @override
   void initState() {
     super.initState();
 
     final api = Provider.of<PlaceholderApi>(context, listen: false);
+    _filter = widget.filter;
+    _searchController = .new();
+    _searchController.addListener(_updateFilteredItems);
+    _load(api);
+  }
 
-    _dataFuture = loadData(api).bodyOrThrow().onError((
-      error,
-      StackTrace stackTrace,
-    ) {
-      onError(error, stackTrace);
-      return const [];
-    });
+  @override
+  void dispose() {
+    super.dispose();
+    _searchController.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant WebListWidget<T> oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (_filter != widget.filter) {
+      _filter = widget.filter;
+
+      if (_allItems != null) {
+        _updateFilteredItems();
+      }
+    }
+  }
+
+  void _load(PlaceholderApi api) async {
+    try {
+      _allItems = await widget.retrieveData(api, disposed).bodyOrThrow();
+      _updateFilteredItems();
+    } on Exception catch (error, stackTrace) {
+      widget.onError(error, stackTrace);
+      setState(() {
+        _allItems = const [];
+        _isErrored = true;
+      });
+    }
+  }
+
+  void _updateFilteredItems() {
+    final filter = widget.filter;
+    final text = _searchController.text.toLowerCase();
+    var items = _allItems!;
+    if (filter != null && text.isNotEmpty) {
+      items = items.where((item) => filter(item, text)).toList();
+    }
+
+    setState(() => _filteredItems = items);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _dataFuture,
-      builder: (context, state) {
-        if (state.hasError) {
-          return buildError(context);
-        }
+    if (_isErrored) {
+      return buildError(context);
+    }
 
-        final items = state.data;
-        if (items == null) {
-          return Center(child: SizedBox(child: CircularProgressIndicator()));
-        }
+    final items = _filteredItems;
+    if (items == null) {
+      return Center(child: CircularProgressIndicator());
+    }
 
-        return ListWidget(items: items, itemBuilder: buildItem);
-      },
+    return Column(
+      children: [
+        if (_filter != null)
+          Padding(
+            padding: AppStyle.paddingMedAll,
+            child: TextField(
+              decoration: InputDecoration(
+                border: ShapedInputBorder(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: AppStyle.borderRadiusMedAll,
+                  ),
+                ),
+                filled: true,
+                fillColor: Theme.of(context).colorScheme.surfaceContainer,
+                hint: Localized(text: AppText.searchHint),
+                suffixIcon: const Icon(Icons.search),
+              ),
+              controller: _searchController,
+            ),
+          ),
+        Expanded(
+          child: FadingEdgeScrollView.builder(
+            builder: (_, controller) {
+              return ListWidget(
+                controller: controller,
+                items: items,
+                itemBuilder: widget.itemBuilder,
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 
@@ -86,6 +178,4 @@ abstract class ListWidgetState<W extends StatefulWidget, T> extends State<W>
       ),
     );
   }
-
-  Widget buildItem(BuildContext context, T item);
 }

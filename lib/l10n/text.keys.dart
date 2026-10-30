@@ -17,31 +17,31 @@ sealed class AppText extends LocalizationMessage<l.AppLocalizations> {
   ///
   /// In en, this message translates to:
   /// **'Comments ({count})'**
-  const factory AppText.postComments({required int count}) = _C11;
+  const factory AppText.postComments({required int count}) = _C12;
 
   /// No description provided for @moreItems.
   ///
   /// In en, this message translates to:
   /// **'+{count} more'**
-  const factory AppText.moreItems({required int count}) = _C12;
+  const factory AppText.moreItems({required int count}) = _C13;
 
   /// No description provided for @pageTitleUserPosts.
   ///
   /// In en, this message translates to:
   /// **'Posts by {name}'**
-  const factory AppText.pageTitleUserPosts({required Object name}) = _C13;
+  const factory AppText.pageTitleUserPosts({required Object name}) = _C14;
 
   /// No description provided for @pageTitleUserTodos.
   ///
   /// In en, this message translates to:
   /// **'Todos by {name}'**
-  const factory AppText.pageTitleUserTodos({required Object name}) = _C14;
+  const factory AppText.pageTitleUserTodos({required Object name}) = _C15;
 
   /// No description provided for @pageTitleUserAlbums.
   ///
   /// In en, this message translates to:
   /// **'Albums by {name}'**
-  const factory AppText.pageTitleUserAlbums({required Object name}) = _C15;
+  const factory AppText.pageTitleUserAlbums({required Object name}) = _C16;
 
   /// No description provided for @itemAuthor.
   ///
@@ -50,7 +50,16 @@ sealed class AppText extends LocalizationMessage<l.AppLocalizations> {
   const factory AppText.itemAuthor({
     required Object name,
     required Object username,
-  }) = _C16;
+  }) = _C17;
+
+  /// No description provided for @userDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} ({username})'**
+  const factory AppText.userDisplay({
+    required Object name,
+    required Object username,
+  }) = _C18;
 
   /// No description provided for @appErrorGeneric.
   ///
@@ -100,23 +109,29 @@ sealed class AppText extends LocalizationMessage<l.AppLocalizations> {
   /// **'Users'**
   static const AppText pageTitleUsers = _C7();
 
+  /// No description provided for @searchHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  static const AppText searchHint = _C8();
+
   /// No description provided for @usersViewAlbums.
   ///
   /// In en, this message translates to:
   /// **'View Albums'**
-  static const AppText usersViewAlbums = _C8();
+  static const AppText usersViewAlbums = _C9();
 
   /// No description provided for @usersViewPosts.
   ///
   /// In en, this message translates to:
   /// **'View Posts'**
-  static const AppText usersViewPosts = _C9();
+  static const AppText usersViewPosts = _C10();
 
   /// No description provided for @usersViewTodos.
   ///
   /// In en, this message translates to:
   /// **'View Todos'**
-  static const AppText usersViewTodos = _C10();
+  static const AppText usersViewTodos = _C11();
 }
 
 final class _C0 extends AppText {
@@ -203,14 +218,24 @@ final class _C8 extends AppText {
   const _C8();
 
   @override
+  getText(c, l) => l.searchHint;
+
+  @override
+  toString() => 'AppText.searchHint';
+}
+
+final class _C9 extends AppText {
+  const _C9();
+
+  @override
   getText(c, l) => l.usersViewAlbums;
 
   @override
   toString() => 'AppText.usersViewAlbums';
 }
 
-final class _C9 extends AppText {
-  const _C9();
+final class _C10 extends AppText {
+  const _C10();
 
   @override
   getText(c, l) => l.usersViewPosts;
@@ -219,8 +244,8 @@ final class _C9 extends AppText {
   toString() => 'AppText.usersViewPosts';
 }
 
-final class _C10 extends AppText {
-  const _C10();
+final class _C11 extends AppText {
+  const _C11();
 
   @override
   getText(c, l) => l.usersViewTodos;
@@ -229,8 +254,8 @@ final class _C10 extends AppText {
   toString() => 'AppText.usersViewTodos';
 }
 
-final class _C11 extends AppText {
-  const _C11({required this.count});
+final class _C12 extends AppText {
+  const _C12({required this.count});
 
   final int count;
 
@@ -241,8 +266,8 @@ final class _C11 extends AppText {
   toString() => 'AppText.postComments';
 }
 
-final class _C12 extends AppText {
-  const _C12({required this.count});
+final class _C13 extends AppText {
+  const _C13({required this.count});
 
   final int count;
 
@@ -253,8 +278,8 @@ final class _C12 extends AppText {
   toString() => 'AppText.moreItems';
 }
 
-final class _C13 extends AppText {
-  const _C13({required this.name});
+final class _C14 extends AppText {
+  const _C14({required this.name});
 
   final Object name;
 
@@ -265,8 +290,8 @@ final class _C13 extends AppText {
   toString() => 'AppText.pageTitleUserPosts';
 }
 
-final class _C14 extends AppText {
-  const _C14({required this.name});
+final class _C15 extends AppText {
+  const _C15({required this.name});
 
   final Object name;
 
@@ -277,8 +302,8 @@ final class _C14 extends AppText {
   toString() => 'AppText.pageTitleUserTodos';
 }
 
-final class _C15 extends AppText {
-  const _C15({required this.name});
+final class _C16 extends AppText {
+  const _C16({required this.name});
 
   final Object name;
 
@@ -289,8 +314,8 @@ final class _C15 extends AppText {
   toString() => 'AppText.pageTitleUserAlbums';
 }
 
-final class _C16 extends AppText {
-  const _C16({required this.name, required this.username});
+final class _C17 extends AppText {
+  const _C17({required this.name, required this.username});
 
   final Object name;
 
@@ -304,4 +329,21 @@ final class _C16 extends AppText {
 
   @override
   toString() => 'AppText.itemAuthor';
+}
+
+final class _C18 extends AppText {
+  const _C18({required this.name, required this.username});
+
+  final Object name;
+
+  final Object username;
+
+  @override
+  getText(c, l) => l.userDisplay(
+    name: Message.getString(c, name),
+    username: Message.getString(c, username),
+  );
+
+  @override
+  toString() => 'AppText.userDisplay';
 }
