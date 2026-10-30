@@ -20,7 +20,7 @@ class UsersListWidget extends StatelessWidget {
       itemBuilder: (_, item) {
         final theme = Theme.of(context);
         return ItemTile(
-          leading: Icon(Icons.person_2_outlined),
+          leading: const Icon(Icons.person_2_outlined),
           title: Localized(
             text: AppText.userDisplay(name: item.name, username: item.username),
             style: theme.textTheme.titleLarge?.copyWith(overflow: .ellipsis),

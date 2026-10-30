@@ -13,8 +13,8 @@ class TodoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ItemTile(
       leading: todo.completed
-          ? Icon(Icons.check_circle, color: Colors.green)
-          : Icon(Icons.cancel, color: Colors.red),
+          ? const Icon(Icons.check_circle, color: Colors.green)
+          : const Icon(Icons.cancel, color: Colors.red),
       title: Text(todo.title),
     );
   }

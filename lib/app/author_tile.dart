@@ -15,7 +15,7 @@ class AuthorTile extends StatelessWidget {
       clipBehavior: .hardEdge,
       child: ListTile(
         textColor: colors.onSecondaryContainer,
-        leading: Icon(Icons.person_2_outlined),
+        leading: const Icon(Icons.person_2_outlined),
         title: Localized(
           text: AppText.itemAuthor(
             name: author.name,

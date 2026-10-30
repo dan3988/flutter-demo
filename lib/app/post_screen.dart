@@ -28,8 +28,8 @@ class _PostScreenState extends State<PostScreen> with DisposedSignalState {
     final PostScreen(:post, :user, :comments) = widget;
     final theme = Theme.of(context);
     return Screen(
-      title: Localized(text: AppText.pageTitlePost),
-      safeArea: .pad(AppStyle.paddingMedAll),
+      title: const Localized(text: AppText.pageTitlePost),
+      safeArea: const .pad(AppStyle.paddingMedAll),
       body: Column(
         mainAxisSize: .max,
         crossAxisAlignment: .stretch,

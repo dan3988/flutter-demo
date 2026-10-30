@@ -20,8 +20,8 @@ class AlbumScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Screen(
-      safeArea: .pad(AppStyle.paddingMedAll),
-      title: Localized(text: AppText.pageTitleAlbum),
+      safeArea: const .pad(AppStyle.paddingMedAll),
+      title: const Localized(text: AppText.pageTitleAlbum),
       body: Column(
         spacing: AppStyle.paddingMed,
         children: [

@@ -18,7 +18,7 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final buttonStyle = TextButton.styleFrom(
-      shape: RoundedRectangleBorder(borderRadius: AppStyle.borderRadiusMedAll),
+      shape: const RoundedRectangleBorder(borderRadius: AppStyle.borderRadiusMedAll),
       textStyle: theme.textTheme.titleMedium,
       backgroundColor: theme.colorScheme.secondary,
       foregroundColor: theme.colorScheme.onSecondary,
@@ -31,8 +31,8 @@ class UserScreen extends StatelessWidget {
     );
 
     return Screen(
-      title: Localized(text: AppText.pageTitleUser),
-      safeArea: .pad(AppStyle.paddingMedAll),
+      title: const Localized(text: AppText.pageTitleUser),
+      safeArea: const .pad(AppStyle.paddingMedAll),
       body: DefaultTextStyle(
         style: theme.textTheme.bodyLarge!,
         child: Column(
@@ -92,17 +92,17 @@ class UserScreen extends StatelessWidget {
             TextButton(
               style: buttonStyle,
               onPressed: () => _openPosts(context),
-              child: Localized(text: AppText.usersViewPosts),
+              child: const Localized(text: AppText.usersViewPosts),
             ),
             TextButton(
               style: buttonStyle,
               onPressed: () => _openAlbums(context),
-              child: Localized(text: AppText.usersViewAlbums),
+              child: const Localized(text: AppText.usersViewAlbums),
             ),
             TextButton(
               style: buttonStyle,
               onPressed: () => _openTodos(context),
-              child: Localized(text: AppText.usersViewTodos),
+              child: const Localized(text: AppText.usersViewTodos),
             ),
           ],
         ),

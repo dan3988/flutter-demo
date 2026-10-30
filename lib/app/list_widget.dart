@@ -131,7 +131,7 @@ class _WebListWidgetState<T> extends State<WebListWidget<T>>
 
     final items = _filteredItems;
     if (items == null) {
-      return Center(child: CircularProgressIndicator());
+      return const Center(child: CircularProgressIndicator());
     }
 
     return Column(
@@ -141,14 +141,14 @@ class _WebListWidgetState<T> extends State<WebListWidget<T>>
             padding: AppStyle.paddingMedAll,
             child: TextField(
               decoration: InputDecoration(
-                border: ShapedInputBorder(
+                border: const ShapedInputBorder(
                   shape: RoundedRectangleBorder(
                     borderRadius: AppStyle.borderRadiusMedAll,
                   ),
                 ),
                 filled: true,
                 fillColor: Theme.of(context).colorScheme.surfaceContainer,
-                hint: Localized(text: AppText.searchHint),
+                hint: const Localized(text: AppText.searchHint),
                 suffixIcon: const Icon(Icons.search),
               ),
               controller: _searchController,

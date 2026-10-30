@@ -52,7 +52,7 @@ class PlaceholderApi {
           ),
         if (simulateSlowConnection)
           _SlowConnectionSimulationInterceptor(
-            minimumDuration: .new(seconds: 2),
+            minimumDuration: const .new(seconds: 2),
           ),
       ],
     );
