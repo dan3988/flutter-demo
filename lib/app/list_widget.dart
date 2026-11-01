@@ -63,12 +63,15 @@ class WebListWidget<T> extends StatefulWidget {
 }
 
 class _WebListWidgetState<T> extends State<WebListWidget<T>>
-    with DisposedSignalState {
+    with DisposedSignalState, AutomaticKeepAliveClientMixin {
   late final TextEditingController _searchController;
   List<T>? _allItems;
   List<T>? _filteredItems;
   ItemFilter<T>? _filter;
   bool _isErrored = false;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -130,6 +133,8 @@ class _WebListWidgetState<T> extends State<WebListWidget<T>>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     if (_isErrored) {
       return buildError(context);
     }
