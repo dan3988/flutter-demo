@@ -103,13 +103,17 @@ class _WebListWidgetState<T> extends State<WebListWidget<T>>
   void _load(PlaceholderApi api) async {
     try {
       _allItems = await widget.retrieveData(api, disposed).bodyOrThrow();
-      _updateFilteredItems();
+      if (mounted) {
+        _updateFilteredItems();
+      }
     } on Exception catch (error, stackTrace) {
       widget.onError(error, stackTrace);
-      setState(() {
-        _allItems = const [];
-        _isErrored = true;
-      });
+      if (mounted) {
+        setState(() {
+          _allItems = const [];
+          _isErrored = true;
+        });
+      }
     }
   }
 

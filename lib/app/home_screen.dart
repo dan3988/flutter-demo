@@ -14,8 +14,7 @@ class HomeScreen extends StatefulWidget {
 enum _HomeTab {
   users(Icons.person, AppText.pageTitleUsers, _buildUsers),
   posts(Icons.textsms, AppText.pageTitlePosts, _buildPosts),
-  albums(Icons.photo, AppText.pageTitleAlbums, _buildAlbums),
-  ;
+  albums(Icons.photo, AppText.pageTitleAlbums, _buildAlbums);
 
   static Widget _buildUsers(BuildContext _) => const UsersListWidget();
 
@@ -31,12 +30,25 @@ enum _HomeTab {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentTab = 0;
+  late final PageController _pageController;
+  var _currentTab = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = .new();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final currentTab = _HomeTab.values[_currentTab];
     final theme = Theme.of(context);
+    final currentTab = _HomeTab.values[_currentTab];
     return Scaffold(
       backgroundColor: theme.colorScheme.surfaceContainer,
       appBar: AppBar(
@@ -54,8 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
           currentIndex: _currentTab,
           backgroundColor: theme.colorScheme.primary,
           selectedItemColor: theme.colorScheme.onPrimary,
-          unselectedItemColor: theme.colorScheme.onPrimary.withValues(alpha: 0.5),
-          onTap: _setTab,
+          unselectedItemColor: theme.colorScheme.onPrimary.withValues(
+            alpha: 0.5,
+          ),
+          onTap: (index) => _pageController.jumpToPage(index),
           items: [
             for (final tab in _HomeTab.values)
               BottomNavigationBarItem(
@@ -65,13 +79,15 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: currentTab.builder(context),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: (page) {
+          if (_currentTab != page) {
+            setState(() => _currentTab = page);
+          }
+        },
+        children: [for (final tab in _HomeTab.values) tab.builder(context)],
+      ),
     );
-  }
-
-  void _setTab(int index) {
-    if (_currentTab != index) {
-      setState(() => _currentTab = index);
-    }
   }
 }
